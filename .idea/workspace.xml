@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d7a57cc-6894-4406-a3da-b5b58eb648a8" name="Default Changelist" comment="signup">
-      <change afterPath="$PROJECT_DIR$/model/User.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/passports/apisignin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/passports/initSetup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/passports/signin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/passports/signup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/signup.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/signup.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +39,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\BaBong\Documents\Duan2\Server\ServerNoError\views" />
       <recent name="C:\Users\BaBong\Documents\Duan2\Server\ServerNoError\model" />
       <recent name="C:\Users\BaBong\Documents\Duan2\Server\ServerNoError" />
+      <recent name="C:\Users\BaBong\Documents\Duan2\Server\ServerNoError\views" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -58,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605633357939</updated>
-      <workItem from="1605633358995" duration="1660000" />
+      <workItem from="1605633358995" duration="1960000" />
     </task>
     <task id="LOCAL-00001" summary="signup">
       <created>1605634816350</created>
@@ -67,7 +61,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605634816350</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="signup">
+      <created>1605635139724</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605635139724</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,25 +91,25 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="447" y="67" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1605634031824" />
-    <state width="1345" height="186" key="GridCell.Tab.0.bottom" timestamp="1605634788793">
+    <state width="1345" height="186" key="GridCell.Tab.0.bottom" timestamp="1605635077911">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="186" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1605634788793" />
-    <state width="1345" height="186" key="GridCell.Tab.0.center" timestamp="1605634788792">
+    <state width="1345" height="186" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1605635077911" />
+    <state width="1345" height="186" key="GridCell.Tab.0.center" timestamp="1605635077911">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="186" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1605634788792" />
-    <state width="1345" height="186" key="GridCell.Tab.0.left" timestamp="1605634788791">
+    <state width="1345" height="186" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1605635077911" />
+    <state width="1345" height="186" key="GridCell.Tab.0.left" timestamp="1605635077911">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="186" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1605634788791" />
-    <state width="1345" height="186" key="GridCell.Tab.0.right" timestamp="1605634788792">
+    <state width="1345" height="186" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1605635077911" />
+    <state width="1345" height="186" key="GridCell.Tab.0.right" timestamp="1605635077911">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="186" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1605634788792" />
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1605634826318">
+    <state width="1345" height="186" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1605635077911" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1605635145195">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1605634826318" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1605635145195" />
   </component>
 </project>
