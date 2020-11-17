@@ -5,6 +5,7 @@ const passport = require("passport");
 const expressSession = require("express-session");
 const Routes = require("./routes/index");
 const AdminRoutes = require("./routes/dashboard.route");
+const apiRoutes = require("./routes/apiRoutes");
 
 var initPassport = require("./passports/initSetup");
 const flash = require("connect-flash");
@@ -55,7 +56,7 @@ const isAuthenticated = function (req, res, next) {
 };
 //Điều hướng trong trang quản trị
 app.use("/admin/", isAuthenticated, AdminRoutes(passport));
-
+app.use("/api/v1", apiRoutes(passport));
 
 
 

@@ -7,13 +7,13 @@ const signIn = (passport) => {
     "signin",
     new LocalStrategy(
       {
-        usernameField: "email",
+        usernameField: "phone",
         passwordField: "password",
         passReqToCallback: true,
       },
-      (req, email, password, done) => {
+      (req, phone, password, done) => {
         // Tìm dữ liệu theo email trong mongo
-        User.findOne({ email: email }, (err, user) => {
+        User.findOne({ phone: phone }, (err, user) => {
           // Nếu có lỗi thì bỏ qua không đăng nhập
           if (err) return done(err);
           // Nếu người dùng không tồn tại thì bỏ qua không đăng nhập và trả về thông tin

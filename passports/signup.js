@@ -7,14 +7,14 @@ const signUp = (passport) => {
     "signup",
     new LocalStrategy(
       {
-        usernameField: "email",
+        usernameField: "phone",
         passwordField: "password",
         passReqToCallback: true,
       },
-      (req, email, password, done) => {
+      (req, phone, password, done) => {
         const createAccount = () => {
           // Kiểm tra xem email đã có trong db hay chưa
-          User.findOne({ email: email }, (err, user) => {
+          User.findOne({ phone: phone }, (err, user) => {
             // Nếu có lỗi xảy ra thì không tiến hành đăng ký
             if (err) return done(err);
             // Nếu email đã có trong db thì gửi về thông báo cho người dùng
@@ -22,12 +22,12 @@ const signUp = (passport) => {
               return done(
                 null,
                 false,
-                req.flash("message", "Email đã tồn tại!!!")
+                req.flash("message", "Số điện thoại đã tồn tại!!!")
               );
             } else {
-              //Nếu không có email nào thì tiến hành tạo tài khoản mới
+              //Nếu không có phone nào thì tiến hành tạo tài khoản mới
               let userInfo = new User();
-              userInfo.email = email;
+              userInfo.phone = phone;
               userInfo.fullname = req.param("fullname");
               userInfo.password = createHash(password); //Tạo mật khẩu dạng mã hoá
 

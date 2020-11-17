@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d7a57cc-6894-4406-a3da-b5b58eb648a8" name="Default Changelist" comment="dashboard" />
+    <list default="true" id="9d7a57cc-6894-4406-a3da-b5b58eb648a8" name="Default Changelist" comment="user">
+      <change afterPath="$PROJECT_DIR$/controllers/api/usersController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/apiRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passports/signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/passports/signin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passports/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/passports/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/signin.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/signin.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/signup.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/signup.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/users.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/users.hbs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605633357939</updated>
-      <workItem from="1605633358995" duration="2269000" />
+      <workItem from="1605633358995" duration="3992000" />
     </task>
     <task id="LOCAL-00001" summary="signup">
       <created>1605634816350</created>
@@ -72,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605635579710</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="user">
+      <created>1605635796011</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605635796011</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -81,7 +101,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="signup" />
     <MESSAGE value="dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="dashboard" />
+    <MESSAGE value="user" />
+    <option name="LAST_COMMIT_MESSAGE" value="user" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="116" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605634617318">
@@ -96,25 +117,25 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="447" y="67" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1605634031824" />
-    <state width="1345" height="186" key="GridCell.Tab.0.bottom" timestamp="1605635763850">
+    <state width="1345" height="186" key="GridCell.Tab.0.bottom" timestamp="1605637070462">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="186" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1605635763850" />
-    <state width="1345" height="186" key="GridCell.Tab.0.center" timestamp="1605635763850">
+    <state width="1345" height="186" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1605637070462" />
+    <state width="1345" height="186" key="GridCell.Tab.0.center" timestamp="1605637070462">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="186" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1605635763850" />
-    <state width="1345" height="186" key="GridCell.Tab.0.left" timestamp="1605635763850">
+    <state width="1345" height="186" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1605637070462" />
+    <state width="1345" height="186" key="GridCell.Tab.0.left" timestamp="1605637070462">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="186" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1605635763850" />
-    <state width="1345" height="186" key="GridCell.Tab.0.right" timestamp="1605635763850">
+    <state width="1345" height="186" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1605637070462" />
+    <state width="1345" height="186" key="GridCell.Tab.0.right" timestamp="1605637070462">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="186" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1605635763850" />
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1605635586230">
+    <state width="1345" height="186" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1605637070462" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1605635908281">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1605635586230" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1605635908281" />
   </component>
 </project>
