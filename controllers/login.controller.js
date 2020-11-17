@@ -6,7 +6,13 @@ const getLogin = (req, res) => {
         message: req.flash("message"),
     });
 };
-
+const postLogin = (passport) =>
+    passport.authenticate("signin", {
+        successRedirect: "/admin",
+        failureRedirect: "/",
+        failureFlash: true,
+    });
 module.exports = {
     getLogin,
+    postLogin
 };
