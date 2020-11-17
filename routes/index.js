@@ -8,6 +8,10 @@ const Routes = (passport) => {
   router.post('/signin', login.postLogin(passport));
   router.get("/signup", signup.getSignUp);
   router.post("/signup", signup.postSignUp(passport));
+  router.get("/signout", (req, res) => {
+    req.logout();
+    res.redirect("/");
+  });
   return router;
 };
 
