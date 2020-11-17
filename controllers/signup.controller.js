@@ -6,6 +6,13 @@ const getSignUp = (req, res) => {
         message: req.flash("message"),
     });
 };
+const postSignUp = (passport) =>
+    passport.authenticate("signup", {
+        successRedirect: "/admin",
+        failureRedirect: "/signup",
+        failureFlash: true,
+    });
 module.exports = {
     getSignUp,
+    postSignUp,
 };

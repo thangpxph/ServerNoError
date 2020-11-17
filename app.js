@@ -5,6 +5,7 @@ const passport = require("passport");
 const expressSession = require("express-session");
 const Routes = require("./routes/index");
 
+var initPassport = require("./passports/initSetup");
 const flash = require("connect-flash");
 app.use(flash());
 
@@ -18,6 +19,9 @@ app.use(
       saveUninitialized: true,
     })
 );
+app.use(passport.initialize());
+app.use(passport.session());
+initPassport(passport);
 
 //Kết nối Mongo DB
 const connectDB = require("./config/db");

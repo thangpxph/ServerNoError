@@ -7,6 +7,7 @@ const Routes = (passport) => {
   router.get('/', login.getLogin);
   router.post('/signin', login.postLogin(passport));
   router.get("/signup", signup.getSignUp);
+  router.post("/signup", signup.postSignUp(passport));
   return router;
 };
 
