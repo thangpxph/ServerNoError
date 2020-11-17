@@ -3,10 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { phone, password } = req.body;
     let secretOrKey = "subee team";
-    if (email && password) {
-        let user = await User.findOne({ email });
+    if (phone && password) {
+        let user = await User.findOne({ phone });
         if (!user) {
             res.status(401).json({ msg: "Không tìm thấy ngươi dùng nào" });
         }
