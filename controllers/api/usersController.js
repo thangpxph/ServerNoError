@@ -1,4 +1,5 @@
 const User = require("../../model/User");
+const Category = require("../../model/Category");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -44,7 +45,17 @@ const signinUser = async (req, res) => {
 const isValidPassword = (user, password) => {
     return bcrypt.compareSync(password, user.password);
 };
+const getCategory = async (req, res) => {
+    console.log(req);
+    try {
+        let usersData = await Category.find().select("-__v");
+        return res.send(usersData);
+    } catch (error) {
+        return res.status(200).json({ status: false, msg: "Có lỗi xảy ra" });
+    }
+};
 module.exports = {
     loginUser,
     signinUser,
+    getCategory,
 };

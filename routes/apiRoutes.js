@@ -8,6 +8,8 @@ const apiRoutes = (passport) => {
     router.post("/login", userController.loginUser);
 
     router.post('/signin', userController.signinUser);
+
+    router.get("/category", jwtAuthenticated, userController.getCategory);
     return router;
 };
 

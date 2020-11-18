@@ -37,9 +37,10 @@ title: "Quản lý thể loại món ăn",
     });
 };
 const createCategory = async (req, res) => {
-const { title } = req.body;
+const title  = req.body.title;
+console.log(title)
 try {
-    let createData = await Category.create({title});
+    let createData = await Category.create({nameCategory:title});
     res.redirect("/admin/category");
 }catch (error){
 console.log(error.message);
