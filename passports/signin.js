@@ -12,7 +12,7 @@ const signIn = (passport) => {
         passReqToCallback: true,
       },
       (req, phone, password, done) => {
-        // Tìm dữ liệu theo email trong mongo
+        // Tìm dữ liệu theo phone trong mongo
         User.findOne({ phone: phone }, (err, user) => {
           // Nếu có lỗi thì bỏ qua không đăng nhập
           if (err) return done(err);

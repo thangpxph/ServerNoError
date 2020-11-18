@@ -1,4 +1,5 @@
 const User = require('../model/User');
+const Category = require('../model/Category');
 
 const getDashboard = (req, res) => {
     res.render("dashboard", {
@@ -22,7 +23,31 @@ const getUserMananger = async (req, res) => {
         userList: newData,
     });
 };
+const getCategory = async (req, res) =>{
+    //lấy danh sách thể loại món ăn từ mongoose
+    let categorys = await Category.find().lean();
+    let newData = categorys.map((item, index) =>({
+    ...item,
+        noNum: index +1,
+    }));
+    res.render("category",{
+title: "Quản lý thể loại món ăn",
+        layout:"dashlayout",
+        categoryList: newData,
+    });
+};
+const createCategory = async (req, res) => {
+const { title } = req.body;
+try {
+    let createData = await Category.create({title});
+    res.redirect("/admin/category");
+}catch (error){
+console.log(error.message);
+}
+}
 module.exports = {
     getDashboard,
     getUserMananger,
+    getCategory,
+    createCategory,
 };

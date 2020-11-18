@@ -7,6 +7,7 @@ const apiRoutes = (passport) => {
 
     router.post("/login", userController.loginUser);
 
+    router.post('/signin', userController.signinUser);
     return router;
 };
 
