@@ -7,7 +7,7 @@ const AdminRoutes = (passport) => {
     router.get("/users", dashboard.getUserMananger);
     router.get("/category", dashboard.getCategory);
     router.post("/category/create", dashboard.createCategory);
-
+    router.get("/dish", dashboard.getDish);
     return router;
 };
 

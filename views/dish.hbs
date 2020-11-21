@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Quản lý món ăn</h3>
+            <!-- Button trigger modal -->
+            <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
+                Thêm món ăn
+            </button>
+
+            <div class="form-group">
+                <label for="category2">Tác giả</label>
+                <select class="form-control" name="category2" id="category2">
+                    {{#each categorys}}
+                        <option value="{{_id}}">{{nameCategory}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên món ăn</th>
+                    <th>Thể loại</th>
+                    <th>Giá tiền</th>
+                    <th>Thời gian làm</th>
+                    <th>Hành động</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                {{#each dishLish}}
+                    <tr>
+                        <td>{{noNum}}</td>
+                        <td>{{imageDish}}</td>
+                        <td>{{nameDish}}</td>
+                        <td>{{category.nameCategory}}</td>
+                        <td>
+                            <button type="button" name="editBtn" class="editBtn" data-id={{_id}}
+                                    data-authorid="{{category._id}}" class="btn btn-primary">Sửa
+                            </button>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="/admin/dish/create" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="heading">Thêm món ăn</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nameDish">Tên món ăn</label>
+                            <input type="text" class="form-control" name="nameDish" id="nameDish"
+                                   placeholder="Tên món ăn">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Thể loại</label>
+                            <select class="form-control" name="category" id="category">
+                                {{#each users}}
+                                    <option value="{{_id}}">{{nameCategory}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Giá tiền</label>
+                            <input type="number" class="form-control" name="price" id="price"
+                                   placeholder="Giá tiền">
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Thời gian hoàn thiện</label>
+                            <input type="number" class="form-control" name="time" id="time"
+                                   placeholder="Giá tiền">
+                        </div>
+                        <div class="form-group">
+                            <label for="ingredient">Thành phần</label>
+                            <textarea class="form-control" name="ingredient" id="ingredient" rows="3"></textarea>
+                        </div>
+                        <div class="btn btn-secondary-success btn-rounded waves-effect btn-sm float-left w-full text-left">
+                            <span>Choose file</span>
+                            <input type="file" name="selectFile">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Đăng</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

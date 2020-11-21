@@ -15,32 +15,36 @@ const loginUser = async (req, res) => {
             let payload = {_id: user._id};
             let token = jwt.sign(payload, secretOrKey);
             res.json({msg: "Thành công", token: token});
-        } else {
             res.status(401).json({msg: "Mật khẩu không đúng"});
         }
     }
 };
 const signinUser = async (req, res) => {
     const {fullname, phone, password} = req.body;
-        let user = await User.findOne({phone: phone})
-        if (user) {
-            res.status(401).json({msg: "Tài khoản đã tồn tại"});
-        } else {
-            let newUser = new User();
-            newUser.fullname = fullname;
-            newUser.phone = phone;
-            newUser.password = password;
-            let create = await newUser.save((err) => {
-                if (err) {
-                    console.log(err.message);
-                    throw err;
-                }
-                //Trả về thông tin sau khi hoàn tất
-                res.json({msg: "Thành công"});
-            })
-        }
+    let user = await User.findOne({phone: phone})
+    if (user) {
+        res.status(401).json({msg: "Tài khoản đã tồn tại"});
+    } else {
+        let newUser = new User();
+        newUser.fullname = fullname;
+        newUser.phone = phone;
+        newUser.password = createHash(password);
+        let create = await newUser.save((err) => {
+            if (err) {
+                console.log(err.message);
+                throw err;
+            }
+            //Trả về thông tin sau khi hoàn tất
+            res.json({msg: "Thành công"});
+        })
+    }
 
 };
+// mã hóa mk
+const createHash = (password) => {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+};
+
 // So sánh mật khẩu
 const isValidPassword = (user, password) => {
     return bcrypt.compareSync(password, user.password);
@@ -49,9 +53,12 @@ const getCategory = async (req, res) => {
     console.log(req);
     try {
         let usersData = await Category.find().select("-__v");
-        return res.send(usersData);
+        if (usersData) {
+            return res.send(usersData);
+        } else
+            return res.status(200).json({status: false, msg: "Có lỗi xảy ra"});
     } catch (error) {
-        return res.status(200).json({ status: false, msg: "Có lỗi xảy ra" });
+        return res.status(200).json({status: false, msg: "Có lỗi xảy ra"});
     }
 };
 module.exports = {
