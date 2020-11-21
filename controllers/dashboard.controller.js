@@ -38,10 +38,19 @@ const getCategory = async (req, res) => {
     });
 };
 const createCategory = async (req, res) => {
-    const title = req.body.title;
+    const {postId, title} = req.body;
     console.log(title)
     try {
-        let createData = await Category.create({nameCategory: title});
+        if (postId != "") {
+            let updateData = await Category.findByIdAndUpdate(
+                postId, {
+                    nameCategory:title
+                },
+                {new: true}
+            );
+        } else {
+            let createData = await Category.create({nameCategory:title});
+        }
         res.redirect("/admin/category");
     } catch (error) {
         console.log(error.message);
@@ -55,11 +64,11 @@ const getDish = async (req, res) => {
         .lean();
     let newData = dishs.map((item, index) => ({
         ...item,
-        noNum: index +1,
+        noNum: index + 1,
     }));
     res.render("dish", {
         title: "Quản lý món ăn",
-        layout:"dashlayout",
+        layout: "dashlayout",
         dishList: newData,
         categorys: categorys,
     });

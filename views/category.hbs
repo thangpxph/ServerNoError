@@ -68,45 +68,15 @@
         document.querySelectorAll('.editBtn').forEach(item => {
             item.addEventListener('click', e => {
                 let pid = e.target.dataset.id;
-                let authorId = e.target.dataset.authorid;
                 let pr = e.target.parentNode.parentNode;
                 let title = pr.getElementsByTagName('td')[1].innerText;
-                let description = pr.getElementsByTagName('td')[2].innerText;
-                document.querySelector('#heading').innerText = "Sửa bài đăng";
+                document.querySelector('#heading').innerText = "Sửa thể loại";
                 document.querySelector('#submitBtn').innerText = "Cập nhật";
                 document.querySelector('#title').value = title;
                 document.querySelector('#postId').value = pid;
-                document.querySelector('#description').value = description;
-                document.querySelector('#author').value = authorId;
                 $('#modelId').modal('show')
             })
         })
     }
     addEvent();
-    document.querySelector('#author2').addEventListener('change', e => {
-        fetch(`/api/v1/posts/${e.target.value}`)
-                .then(res => res.json())
-                .then(response => {
-                    console.log(response.data)
-                    let innerHtml = '';
-                    if (response.data.length > 0) {
-                        response.data.forEach((elm, index) => {
-                            innerHtml += `<tr>
-                        <td>${index + 1}</td>
-                        <td>${elm.title}</td>
-                        <td>${elm.description}</td>
-                        <td>${elm.author.fullname}</td>
-                        <td><button type="button" name="editBtn" class="editBtn" data-id=${elm._id}
-                                data-authorid="${elm.author._id}" class="btn btn-primary">Sửa</button></td>
-                    </tr>`
-                        })
-                    } else {
-                        innerHtml += `<tr>
-                        <td>Không có bài đăng nào</td>
-                    </tr>`
-                    }
-                    document.querySelector('#tbody').innerHTML = innerHtml;
-                    addEvent();
-                })
-    })
 </script>
