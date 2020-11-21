@@ -8,7 +8,7 @@
             </button>
 
             <div class="form-group">
-                <label for="category2">Tác giả</label>
+                <label for="category2">Món ăn</label>
                 <select class="form-control" name="category2" id="category2">
                     {{#each categorys}}
                         <option value="{{_id}}">{{nameCategory}}</option>
@@ -24,17 +24,21 @@
                     <th>Thể loại</th>
                     <th>Giá tiền</th>
                     <th>Thời gian làm</th>
+                    <th>Thành phần</th>
                     <th>Hành động</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
-                {{#each dishLish}}
+                {{#each dishList}}
                     <tr>
                         <td>{{noNum}}</td>
                         <td>{{imageDish}}</td>
                         <td>{{nameDish}}</td>
                         <td>{{category.nameCategory}}</td>
+                        <td>{{price}}</td>
+                        <td>{{time}}</td>
+                        <td>{{ingredient}}</td>
                         <td>
                             <button type="button" name="editBtn" class="editBtn" data-id={{_id}}
                                     data-authorid="{{category._id}}" class="btn btn-primary">Sửa
@@ -50,6 +54,7 @@
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form action="/admin/dish/create" method="post">
+                <input type="hidden" name="dishId" id="dishId">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="heading">Thêm món ăn</h5>
@@ -66,7 +71,7 @@
                         <div class="form-group">
                             <label for="category">Thể loại</label>
                             <select class="form-control" name="category" id="category">
-                                {{#each users}}
+                                {{#each categorys}}
                                     <option value="{{_id}}">{{nameCategory}}</option>
                                 {{/each}}
                             </select>
@@ -87,7 +92,7 @@
                         </div>
                         <div class="btn btn-secondary-success btn-rounded waves-effect btn-sm float-left w-full text-left">
                             <span>Choose file</span>
-                            <input type="file" name="selectFile">
+                            <input type="file" name="imageDish">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -99,3 +104,16 @@
         </div>
     </div>
 </div>
+<script>
+    document.querySelector('#addBtn').addEventListener('click', e => {
+        document.querySelector('#heading').innerText = "Thêm món ăn";
+        document.querySelector('#submitBtn').innerText = "Đăng";
+        document.querySelector('#nameDish').value = "";
+        document.querySelector('#dishId').value = "";
+        document.querySelector('#price').value = "";
+        document.querySelector('#imageDish').value = "";
+        document.querySelector('#time').value = "";
+        document.querySelector('#ingredient').value = "";
+        document.querySelector('#category').selectedIndex = 0
+    })
+</script>

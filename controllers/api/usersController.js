@@ -23,7 +23,7 @@ const signinUser = async (req, res) => {
     const {fullname, phone, password} = req.body;
     let user = await User.findOne({phone: phone})
     if (user) {
-        res.status(401).json({msg: "Tài khoản đã tồn tại"});
+        res.status(401).json({msg: "1"});
     } else {
         let newUser = new User();
         newUser.fullname = fullname;
@@ -31,11 +31,12 @@ const signinUser = async (req, res) => {
         newUser.password = createHash(password);
         let create = await newUser.save((err) => {
             if (err) {
+                res.json({msg: "2"});
                 console.log(err.message);
                 throw err;
             }
             //Trả về thông tin sau khi hoàn tất
-            res.json({msg: "Thành công"});
+            res.json({msg: "3"});
         })
     }
 

@@ -59,19 +59,43 @@ const createCategory = async (req, res) => {
 
 const getDish = async (req, res) => {
     let categorys = await Category.find().lean();
-    let dishs = await Dish.find()
-        .populate({path: "category", select: " nameCategory "})
-        .lean();
+    let dishs = await Dish.find().lean();
     let newData = dishs.map((item, index) => ({
         ...item,
         noNum: index + 1,
     }));
+    console.log(newData)
     res.render("dish", {
         title: "Quản lý món ăn",
         layout: "dashlayout",
         dishList: newData,
         categorys: categorys,
+
     });
+};
+
+const createDish = async (req, res) => {
+    const { dishId, nameDish, price, time, ingredient, imageDish, category} = req.body;
+    try {
+        if (dishId != "") {
+            let updateData = await Dish.findByIdAndUpdate(
+                dishId,{
+                    nameDish,
+                    price,
+                    time,
+                    ingredient,
+                    imageDish,
+                    category
+                },
+                { new: true}
+            );
+        }else {
+            let createData = await Dish.create({nameDish, price, time, ingredient, imageDish, category})
+        }
+        res.redirect("/admin/dish");
+    }catch (error){
+        console.log(error.message);
+    }
 };
 
 module.exports = {
@@ -80,4 +104,5 @@ module.exports = {
     getCategory,
     createCategory,
     getDish,
+    createDish,
 };
