@@ -1,5 +1,6 @@
 const User = require("../../model/User");
 const Category = require("../../model/Category");
+const Table = require("../../model/Table");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -57,13 +58,26 @@ const getCategory = async (req, res) => {
         if (usersData) {
             return res.send(usersData);
         } else
-            return res.status(200).json({status: false, msg: "Có lỗi xảy ra"});
+            return res.status(200).json({status: false, msg: "1"});
     } catch (error) {
-        return res.status(200).json({status: false, msg: "Có lỗi xảy ra"});
+        return res.status(200).json({status: false, msg: "1"});
+    }
+};
+const getTable = async (req, res) =>{
+    console.log(req);
+    try {
+        let tableData = await Table.find().select("-__v");
+        if (tableData){
+            return res.send(tableData);
+        }else
+            return res.status(200).json({status: false, msg: "1"});
+    }catch (error){
+        return res.status(200).json({status: false, msg:"1"})
     }
 };
 module.exports = {
     loginUser,
     signinUser,
     getCategory,
+    getTable,
 };

@@ -1,6 +1,7 @@
 const User = require('../model/User');
 const Category = require('../model/Category');
 const Dish = require('../model/Dish');
+const Table = require('../model/Table');
 
 const getDashboard = (req, res) => {
     res.render("dashboard", {
@@ -44,12 +45,12 @@ const createCategory = async (req, res) => {
         if (postId != "") {
             let updateData = await Category.findByIdAndUpdate(
                 postId, {
-                    nameCategory:title
+                    nameCategory: title
                 },
                 {new: true}
             );
         } else {
-            let createData = await Category.create({nameCategory:title});
+            let createData = await Category.create({nameCategory: title});
         }
         res.redirect("/admin/category");
     } catch (error) {
@@ -64,7 +65,6 @@ const getDish = async (req, res) => {
         ...item,
         noNum: index + 1,
     }));
-    console.log(newData)
     res.render("dish", {
         title: "Quản lý món ăn",
         layout: "dashlayout",
@@ -75,11 +75,11 @@ const getDish = async (req, res) => {
 };
 
 const createDish = async (req, res) => {
-    const { dishId, nameDish, price, time, ingredient, imageDish, category} = req.body;
+    const {dishId, nameDish, price, time, ingredient, imageDish, category} = req.body;
     try {
         if (dishId != "") {
             let updateData = await Dish.findByIdAndUpdate(
-                dishId,{
+                dishId, {
                     nameDish,
                     price,
                     time,
@@ -87,14 +87,48 @@ const createDish = async (req, res) => {
                     imageDish,
                     category
                 },
-                { new: true}
+                {new: true}
             );
-        }else {
+        } else {
             let createData = await Dish.create({nameDish, price, time, ingredient, imageDish, category})
         }
         res.redirect("/admin/dish");
-    }catch (error){
+    } catch (error) {
         console.log(error.message);
+    }
+};
+const getTable = async (req, res) => {
+    let tables = await Table.find()
+        .select("-__v")
+        .lean();
+    let newData = tables.map((item, index) => ({
+        ...item,
+        noNum: index + 1,
+    }));
+    res.render("table", {
+        title: "Quản lý bàn",
+        layout: "dashlayout",
+        tableList: newData,
+    })
+};
+const createTable = async (req, res) => {
+    const {tableId, nameTable, amount} = req.body;
+    try {
+        if (tableId !== "") {
+            let updateData = await Table.findByIdAndUpdate(
+                tableId, {
+                    nameTable,
+                    amount,
+                    status: 1
+                },
+                {new: true}
+            );
+        }else {
+            let createData = await Table.create({nameTable,amount, status: 1})
+        }
+        res.redirect("/admin/table");
+    }catch (error){
+        console.log(error.message)
     }
 };
 
@@ -105,4 +139,6 @@ module.exports = {
     createCategory,
     getDish,
     createDish,
+    getTable,
+    createTable,
 };

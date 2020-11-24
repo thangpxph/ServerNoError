@@ -9,6 +9,8 @@ const AdminRoutes = (passport) => {
     router.post("/category/create", dashboard.createCategory);
     router.get("/dish", dashboard.getDish);
     router.post("/dish/create", dashboard.createDish);
+    router.get("/table", dashboard.getTable);
+    router.post("/table/create", dashboard.createTable);
     return router;
 };
 

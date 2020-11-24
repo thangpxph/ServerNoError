@@ -10,6 +10,7 @@ const apiRoutes = (passport) => {
     router.post('/signin', userController.signinUser);
 
     router.get("/category", jwtAuthenticated, userController.getCategory);
+    router.get("/table", jwtAuthenticated, userController.getTable);
     return router;
 };
 
