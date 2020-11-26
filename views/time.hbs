@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Quản lý khung giờ</h3>
+            <!-- Button trigger modal -->
+            <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
+                Thêm khung giờ
+            </button>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th style="width: 10%">#</th>
+                    <th style="width: 35%">Bắt đầu</th>
+                    <th style="width: 35%">Kết thúc</th>
+                    <th style="width: 10%">Hành động</th>
+                    <th style="width: 10%">Hành động</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                {{#each timeList}}
+                    <tr>
+                        <td>{{noNum}}</td>
+                        <td>{{startingTime}}</td>
+                        <td>{{endTime}}</td>
+                        <td><button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
+                                    class="btn btn-primary">Sửa</button></td>
+                        <td><button type="button" name="deleteBtn" class="deleteBtn btn btn-danger" data-id={{_id}}
+                                    class="btn btn-danger">Xóa</button></td>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="/admin/time/create" method="post">
+                <input type="hidden" name="timeId" id="timeId">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="heading">Thêm khung giờ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="nameDish">Thời gian bắt đầu</label>
+                                <input name="startingTime" type="time" id="default-picker" class="form-control"
+                                       placeholder="Thời gian bắt đầu">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="nameDish">Thời gian kết thúc</label>
+                                <input name="endTime" type="time" id="default-picker" class="form-control"
+                                       placeholder="Thời gian kết thúc">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Thêm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelector('#addBtn').addEventListener('click', e => {
+        document.querySelector('#heading').innerText = "Thêm khung giờ";
+        document.querySelector('#submitBtn').innerText = "Thêm";
+        document.querySelector('#startingTime').value = "";
+        document.querySelector('#dishId').value = "";
+        document.querySelector('#endTime').value = "";
+    })
+</script>

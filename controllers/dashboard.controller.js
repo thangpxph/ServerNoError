@@ -2,6 +2,7 @@ const User = require('../model/User');
 const Category = require('../model/Category');
 const Dish = require('../model/Dish');
 const Table = require('../model/Table');
+const Time = require('../model/Time');
 
 const getDashboard = (req, res) => {
     res.render("dashboard", {
@@ -131,7 +132,39 @@ const createTable = async (req, res) => {
         console.log(error.message)
     }
 };
-
+const getTime = async (req, res) => {
+    let times = await Time.find()
+        .select("-__v")
+        .lean();
+    let newData = times.map((item, index) => ({
+        ...item,
+        noNum: index + 1,
+    }));
+    res.render("time", {
+        title: "Quản khung giờ",
+        layout: "dashlayout",
+        timeList: newData,
+    })
+};
+const createTime = async (req, res) => {
+    const {timeId, startingTime, endTime} = req.body;
+    try {
+        if (timeId !== "") {
+            let updateData = await Time.findByIdAndUpdate(
+                timeId, {
+                    startingTime,
+                    endTime,
+                },
+                {new: true}
+            );
+        }else {
+            let createData = await Time.create({startingTime,endTime, status: 1})
+        }
+        res.redirect("/admin/time");
+    }catch (error){
+        console.log(error.message)
+    }
+};
 module.exports = {
     getDashboard,
     getUserMananger,
@@ -141,4 +174,6 @@ module.exports = {
     createDish,
     getTable,
     createTable,
+    getTime,
+    createTime,
 };

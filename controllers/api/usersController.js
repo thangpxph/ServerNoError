@@ -1,6 +1,7 @@
 const User = require("../../model/User");
 const Category = require("../../model/Category");
 const Table = require("../../model/Table");
+const Time = require("../../model/Time");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -75,9 +76,24 @@ const getTable = async (req, res) =>{
         return res.status(200).json({status: false, msg:"1"})
     }
 };
+
+const getTime = async (req, res) =>{
+    console.log(req);
+    try {
+        let timeData = await Time.find().select("-__v");
+        if (timeData){
+            return res.send(timeData);
+        }else
+            return res.status(200).json({status: false, msg: "1"});
+    }catch (error){
+        return res.status(200).json({status: false, msg:"1"})
+    }
+};
+
 module.exports = {
     loginUser,
     signinUser,
     getCategory,
     getTable,
+    getTime
 };
