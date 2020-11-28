@@ -19,10 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d7a57cc-6894-4406-a3da-b5b58eb648a8" name="Default Changelist" comment="api time">
+    <list default="true" id="9d7a57cc-6894-4406-a3da-b5b58eb648a8" name="Default Changelist" comment="update api signin">
+      <change afterPath="$PROJECT_DIR$/views/404.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/api/usersController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/api/usersController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/User.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +88,8 @@
       <workItem from="1606188860151" duration="3974000" />
       <workItem from="1606295707659" duration="2792000" />
       <workItem from="1606380634525" duration="5123000" />
-      <workItem from="1606540478563" duration="3630000" />
+      <workItem from="1606540478563" duration="4526000" />
+      <workItem from="1606550034864" duration="1063000" />
     </task>
     <task id="LOCAL-00001" summary="signup">
       <created>1605634816350</created>
@@ -195,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606383395153</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="update api signin">
+      <created>1606546264630</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1606546264630</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,7 +229,8 @@
     <MESSAGE value="update category" />
     <MESSAGE value="api table" />
     <MESSAGE value="api time" />
-    <option name="LAST_COMMIT_MESSAGE" value="api time" />
+    <MESSAGE value="update api signin" />
+    <option name="LAST_COMMIT_MESSAGE" value="update api signin" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="116" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605634617318">
@@ -240,22 +249,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="447" y="67" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1605634031824" />
-    <state width="1345" height="197" key="GridCell.Tab.0.bottom" timestamp="1606546113703">
+    <state width="1345" height="197" key="GridCell.Tab.0.bottom" timestamp="1606551007953">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="197" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606546113703" />
-    <state width="1345" height="197" key="GridCell.Tab.0.center" timestamp="1606546113703">
+    <state width="1345" height="197" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606551007953" />
+    <state width="1345" height="197" key="GridCell.Tab.0.center" timestamp="1606551007952">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="197" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606546113703" />
-    <state width="1345" height="197" key="GridCell.Tab.0.left" timestamp="1606546113703">
+    <state width="1345" height="197" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606551007952" />
+    <state width="1345" height="197" key="GridCell.Tab.0.left" timestamp="1606551007952">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="197" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606546113703" />
-    <state width="1345" height="197" key="GridCell.Tab.0.right" timestamp="1606546113703">
+    <state width="1345" height="197" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606551007952" />
+    <state width="1345" height="197" key="GridCell.Tab.0.right" timestamp="1606551007952">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="197" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606546113703" />
+    <state width="1345" height="197" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606551007952" />
     <state width="1345" height="227" key="GridCell.Tab.1.bottom" timestamp="1606386138444">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
