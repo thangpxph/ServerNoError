@@ -9,20 +9,20 @@ const loginUser = async (req, res) => {
     const {phone, password} = req.body;
     let secretOrKey = "subee team";
     if (phone && password) {
-        let user = await User.findOne({phone});
-        if (!user) {
-            res.status(401).json({msg: "Không tìm thấy ngươi dùng nào"});
+        let users = await User.findOne({phone});
+        if (!users) {
+            res.status(401).json({msg: "1"});
         }
-        if (isValidPassword(user, password)) {
-            let payload = {_id: user._id};
+        if (isValidPassword(users, password)) {
+            let payload = {_id: users._id};
             let token = jwt.sign(payload, secretOrKey);
-            res.json({msg: "Thành công", token: token});
-            res.status(401).json({msg: "Mật khẩu không đúng"});
+            res.json({msg: "3", token: token});
+            res.status(401).json({msg: "2"});
         }
     }
 };
 const signinUser = async (req, res) => {
-    const {fullname, phone, password} = req.body;
+    const {fullname, phone, password, permission} = req.body;
     let user = await User.findOne({phone: phone})
     if (user) {
         res.status(401).json({msg: "1"});
@@ -31,6 +31,7 @@ const signinUser = async (req, res) => {
         newUser.fullname = fullname;
         newUser.phone = phone;
         newUser.password = createHash(password);
+        newUser.permission = permission;
         let create = await newUser.save((err) => {
             if (err) {
                 res.json({msg: "2"});
