@@ -11,14 +11,14 @@ const loginUser = async (req, res) => {
     if (phone && password) {
         let users = await User.findOne({phone});
         if (!users) {
-            res.status(401).json({msg: "1"});
+            res.status(401).json({msg: "1",token: "", permission: "", username: ""});
         }
         if (isValidPassword(users, password)) {
             let payload = {_id: users._id};
             let token = jwt.sign(payload, secretOrKey);
             res.json({msg: "3", token: token, permission: users.permission, username: users.fullname});
         }else
-            res.status(401).json({msg: "2"});
+            res.status(401).json({msg: "2", token: "", permission: "", username: ""});
     }
 };
 const signinUser = async (req, res) => {
@@ -51,8 +51,25 @@ const comparisonPhone = async (req, res) => {
     if (!user){
         res.status(401).json({msg: "1"});
     }else
-        res.json({msg: "2"});
+        res.json({msg: "2", id: user._id});
 }
+const forgotPassword = async (req, res) => {
+    const {id, password} = req.body;
+    console.log("sdbg", id + " "+ password)
+    let user = await User.findByIdAndUpdate(id,
+        {
+            password: createHash(password)
+        },
+        {
+            new: true
+        });
+    if (user>=0){
+        res.json({msg: "2"});
+    }else
+        res.status(401).json({msg: "1"});
+
+}
+
 // mã hóa mk
 const createHash = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
@@ -107,4 +124,5 @@ module.exports = {
     getTable,
     getTime,
     comparisonPhone,
+    forgotPassword,
 };
