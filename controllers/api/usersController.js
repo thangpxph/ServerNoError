@@ -2,6 +2,7 @@ const User = require("../../model/User");
 const Category = require("../../model/Category");
 const Table = require("../../model/Table");
 const Time = require("../../model/Time");
+const Dish = require("../../model/Dish");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -115,6 +116,17 @@ const getTime = async (req, res) => {
         return res.status(200).json({status: false, msg: "1"})
     }
 };
+const getDish = async (req,res) => {
+    try{
+        let dishData = await Dish.find().select("-__v");
+        if (dishData){
+            return res.send(dishData);
+        }else
+            return res.status(200).json({status: false, msg: "1"});
+    }catch (error){
+        return res.status(200).json({status: false, msg: "1"});
+    }
+}
 
 module.exports = {
     loginUser,
@@ -122,6 +134,7 @@ module.exports = {
     getCategory,
     getTable,
     getTime,
+    getDish,
     comparisonPhone,
     forgotPassword,
 };
