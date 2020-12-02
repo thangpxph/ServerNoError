@@ -11,13 +11,13 @@ const loginUser = async (req, res) => {
     if (phone && password) {
         let users = await User.findOne({phone});
         if (!users) {
-            res.status(401).json({msg: "1",token: "", permission: "", username: ""});
+            res.status(401).json({msg: "1", token: "", permission: "", username: ""});
         }
         if (isValidPassword(users, password)) {
             let payload = {_id: users._id};
             let token = jwt.sign(payload, secretOrKey);
             res.json({msg: "3", token: token, permission: users.permission, username: users.fullname});
-        }else
+        } else
             res.status(401).json({msg: "2", token: "", permission: "", username: ""});
     }
 };
@@ -48,25 +48,24 @@ const signinUser = async (req, res) => {
 const comparisonPhone = async (req, res) => {
     const {phone} = req.body;
     let user = await User.findOne({phone: phone});
-    if (!user){
+    if (!user) {
         res.status(401).json({msg: "1"});
-    }else
+    } else
         res.json({msg: "2", id: user._id});
 }
 const forgotPassword = async (req, res) => {
     const {id, password} = req.body;
-    console.log("sdbg", id + " "+ password)
-    let user = await User.findByIdAndUpdate(id,
+    let user = await User.findByIdAndUpdate({_id: id},
         {
             password: createHash(password)
         },
         {
             new: true
         });
-    if (user>=0){
-        res.json({msg: "2"});
-    }else
+    if (user >= 0) {
         res.status(401).json({msg: "1"});
+    } else
+        res.json({msg: "2"});
 
 }
 
@@ -91,29 +90,29 @@ const getCategory = async (req, res) => {
         return res.status(200).json({status: false, msg: "1"});
     }
 };
-const getTable = async (req, res) =>{
+const getTable = async (req, res) => {
     console.log(req);
     try {
         let tableData = await Table.find().select("-__v");
-        if (tableData){
+        if (tableData) {
             return res.send(tableData);
-        }else
+        } else
             return res.status(200).json({status: false, msg: "1"});
-    }catch (error){
-        return res.status(200).json({status: false, msg:"1"})
+    } catch (error) {
+        return res.status(200).json({status: false, msg: "1"})
     }
 };
 
-const getTime = async (req, res) =>{
+const getTime = async (req, res) => {
     console.log(req);
     try {
         let timeData = await Time.find().select("-__v");
-        if (timeData){
+        if (timeData) {
             return res.send(timeData);
-        }else
+        } else
             return res.status(200).json({status: false, msg: "1"});
-    }catch (error){
-        return res.status(200).json({status: false, msg:"1"})
+    } catch (error) {
+        return res.status(200).json({status: false, msg: "1"})
     }
 };
 
