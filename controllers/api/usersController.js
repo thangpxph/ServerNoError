@@ -44,6 +44,15 @@ const signinUser = async (req, res) => {
     }
 
 };
+
+const comparisonPhone = async (req, res) => {
+    const {phone} = req.body;
+    let user = await User.findOne({phone: phone});
+    if (!user){
+        res.status(401).json({msg: "1"});
+    }else
+        res.json({msg: "2"});
+}
 // mã hóa mk
 const createHash = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
@@ -96,5 +105,6 @@ module.exports = {
     signinUser,
     getCategory,
     getTable,
-    getTime
+    getTime,
+    comparisonPhone,
 };
