@@ -40,7 +40,7 @@
                         <td>{{time}}</td>
                         <td>{{ingredient}}</td>
                         <td><button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
-                                    class="btn btn-primary">Sửa</button></td>
+                                    data-categotyid = "{{category._id}}" class="btn btn-primary">Sửa</button></td>
                         <td><button type="button" name="deleteBtn" class="deleteBtn btn btn-danger" data-id={{_id}}
                                     class="btn btn-danger">Xóa</button></td>
                     </tr>
@@ -113,7 +113,7 @@
         document.querySelector('#imageDish').value = "";
         document.querySelector('#time').value = "";
         document.querySelector('#ingredient').value = "";
-        document.querySelector('#categorys').selectedIndex = 0
+        document.querySelector('#category').selectedIndex = 0
     })
     function addEvent() {
         document.querySelectorAll('.editBtn').forEach(item => {
@@ -121,10 +121,10 @@
                 let pid = e.target.dataset.id;
                 let category = e.target.dataset.categoryid;
                 let pr = e.target.parentNode.parentNode;
-                let nameDish = pr.getElementsByTagName('td')[1].innerText;
-                let price = pr.getElementsByTagName('td')[3].innerText;
-                let time = pr.getElementsByTagName('td')[4].innerText;
-                let ingredient = pr.getElementsByTagName('td')[5].innerText;
+                let nameDish = pr.getElementsByTagName('td')[2].innerText;
+                let price = pr.getElementsByTagName('td')[4].innerText;
+                let time = pr.getElementsByTagName('td')[5].innerText;
+                let ingredient = pr.getElementsByTagName('td')[6].innerText;
                 document.querySelector('#heading').innerText = "Sửa món ăn";
                 document.querySelector('#submitBtn').innerText = "Cập nhật";
                 document.querySelector('#nameDish').value = nameDish;
@@ -132,7 +132,7 @@
                 document.querySelector('#price').value = price;
                 document.querySelector('#time').value = time;
                 document.querySelector('#ingredient').value = ingredient;
-                document.querySelector('#categorys').value = category;
+                document.querySelector('#category').value = category;
                 $('#modelId').modal('show')
             })
         })

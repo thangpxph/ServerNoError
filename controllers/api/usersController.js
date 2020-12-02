@@ -16,7 +16,7 @@ const loginUser = async (req, res) => {
         if (isValidPassword(users, password)) {
             let payload = {_id: users._id};
             let token = jwt.sign(payload, secretOrKey);
-            res.json({msg: "3", token: token, permission: users.permission});
+            res.json({msg: "3", token: token, permission: users.permission, username: users.fullname});
         }else
             res.status(401).json({msg: "2"});
     }

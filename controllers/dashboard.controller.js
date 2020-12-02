@@ -40,12 +40,12 @@ const getCategory = async (req, res) => {
     });
 };
 const createCategory = async (req, res) => {
-    const {postId, title} = req.body;
+    const {categoryId, title} = req.body;
     console.log(title)
     try {
-        if (postId != "") {
+        if (categoryId != "") {
             let updateData = await Category.findByIdAndUpdate(
-                postId, {
+                categoryId, {
                     nameCategory: title
                 },
                 {new: true}

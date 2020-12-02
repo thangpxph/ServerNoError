@@ -22,7 +22,9 @@
     <list default="true" id="9d7a57cc-6894-4406-a3da-b5b58eb648a8" name="Default Changelist" comment="update api signin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/dashboard.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/category.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/category.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/dish.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dish.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/table.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/table.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/time.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/time.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,6 +96,8 @@
       <workItem from="1606728410698" duration="2090000" />
       <workItem from="1606835699338" duration="7926000" />
       <workItem from="1606880228246" duration="6453000" />
+      <workItem from="1606891693897" duration="6701000" />
+      <workItem from="1606905657672" duration="2876000" />
     </task>
     <task id="LOCAL-00001" summary="signup">
       <created>1605634816350</created>
@@ -214,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606551113691</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="update api signin">
+      <created>1606891722994</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1606891722995</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,22 +271,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="447" y="67" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1605634031824" />
-    <state width="1345" height="227" key="GridCell.Tab.0.bottom" timestamp="1606886742205">
+    <state width="1328" height="66" key="GridCell.Tab.0.bottom" timestamp="1606906735782">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606886742205" />
-    <state width="1345" height="227" key="GridCell.Tab.0.center" timestamp="1606886742205">
+    <state width="1328" height="66" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606906735782" />
+    <state width="1328" height="66" key="GridCell.Tab.0.center" timestamp="1606906735782">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606886742205" />
-    <state width="1345" height="227" key="GridCell.Tab.0.left" timestamp="1606886742205">
+    <state width="1328" height="66" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606906735782" />
+    <state width="1328" height="66" key="GridCell.Tab.0.left" timestamp="1606906735782">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606886742205" />
-    <state width="1345" height="227" key="GridCell.Tab.0.right" timestamp="1606886742205">
+    <state width="1328" height="66" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606906735782" />
+    <state width="1328" height="66" key="GridCell.Tab.0.right" timestamp="1606906735782">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606886742205" />
+    <state width="1328" height="66" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606906735782" />
     <state width="1345" height="227" key="GridCell.Tab.1.bottom" timestamp="1606886742205">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -328,10 +339,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1605669644121" />
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1606551118730">
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1606891724305">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1606551118730" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1606891724305" />
     <state x="500" y="283" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606191651806">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
