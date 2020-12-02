@@ -61,7 +61,9 @@ const createCategory = async (req, res) => {
 
 const getDish = async (req, res) => {
     let categorys = await Category.find().lean();
-    let dishs = await Dish.find().lean();
+    let dishs = await Dish.find()
+        .populate({ path: "category", select: "nameCategory" })
+        .lean();
     let newData = dishs.map((item, index) => ({
         ...item,
         noNum: index + 1,
@@ -124,11 +126,11 @@ const createTable = async (req, res) => {
                 },
                 {new: true}
             );
-        }else {
-            let createData = await Table.create({nameTable,amount, status: 1})
+        } else {
+            let createData = await Table.create({nameTable, amount, status: 1})
         }
         res.redirect("/admin/table");
-    }catch (error){
+    } catch (error) {
         console.log(error.message)
     }
 };
@@ -157,11 +159,11 @@ const createTime = async (req, res) => {
                 },
                 {new: true}
             );
-        }else {
-            let createData = await Time.create({startingTime,endTime, status: 1})
+        } else {
+            let createData = await Time.create({startingTime, endTime, status: 1})
         }
         res.redirect("/admin/time");
-    }catch (error){
+    } catch (error) {
         console.log(error.message)
     }
 };

@@ -8,14 +8,14 @@
             </button>
 
             <div class="form-group">
-                <label for="category2">Món ăn</label>
+                <label for="category2">Lọc món ăn</label>
                 <select class="form-control" name="category2" id="category2">
                     {{#each categorys}}
                         <option value="{{_id}}">{{nameCategory}}</option>
                     {{/each}}
                 </select>
             </div>
-            <table class="table">
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -26,7 +26,7 @@
                     <th>Thời gian làm</th>
                     <th>Thành phần</th>
                     <th>Hành động</th>
-                    <th></th>
+                    <th>Hành động</th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
@@ -39,11 +39,10 @@
                         <td>{{price}}</td>
                         <td>{{time}}</td>
                         <td>{{ingredient}}</td>
-                        <td>
-                            <button type="button" name="editBtn" class="editBtn" data-id={{_id}}
-                                    data-authorid="{{category._id}}" class="btn btn-primary">Sửa
-                            </button>
-                        </td>
+                        <td><button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
+                                    class="btn btn-primary">Sửa</button></td>
+                        <td><button type="button" name="deleteBtn" class="deleteBtn btn btn-danger" data-id={{_id}}
+                                    class="btn btn-danger">Xóa</button></td>
                     </tr>
                 {{/each}}
                 </tbody>
@@ -114,6 +113,29 @@
         document.querySelector('#imageDish').value = "";
         document.querySelector('#time').value = "";
         document.querySelector('#ingredient').value = "";
-        document.querySelector('#category').selectedIndex = 0
+        document.querySelector('#categorys').selectedIndex = 0
     })
+    function addEvent() {
+        document.querySelectorAll('.editBtn').forEach(item => {
+            item.addEventListener('click', e => {
+                let pid = e.target.dataset.id;
+                let category = e.target.dataset.categoryid;
+                let pr = e.target.parentNode.parentNode;
+                let nameDish = pr.getElementsByTagName('td')[1].innerText;
+                let price = pr.getElementsByTagName('td')[3].innerText;
+                let time = pr.getElementsByTagName('td')[4].innerText;
+                let ingredient = pr.getElementsByTagName('td')[5].innerText;
+                document.querySelector('#heading').innerText = "Sửa món ăn";
+                document.querySelector('#submitBtn').innerText = "Cập nhật";
+                document.querySelector('#nameDish').value = nameDish;
+                document.querySelector('#dishId').value = pid;
+                document.querySelector('#price').value = price;
+                document.querySelector('#time').value = time;
+                document.querySelector('#ingredient').value = ingredient;
+                document.querySelector('#categorys').value = category;
+                $('#modelId').modal('show')
+            })
+        })
+    }
+    addEvent();
 </script>
