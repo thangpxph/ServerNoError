@@ -167,6 +167,17 @@ const createTime = async (req, res) => {
         console.log(error.message)
     }
 };
+const deleteDish = async (req, res) => {
+    const {dishIdDel} = req.body;
+    let dishs = await Dish.findByIdAndDelete(dishIdDel);
+    res.redirect("/admin/dish");
+}   
+const deleteCategory = async (req, res) => {
+    const {categoryIdDel} = req.body;
+    let dishs = await Dish.deleteMany({category: categoryIdDel});
+    let category = await Category.findByIdAndDelete(categoryIdDel);
+    res.redirect("/admin/category");
+}
 module.exports = {
     getDashboard,
     getUserMananger,
@@ -178,4 +189,6 @@ module.exports = {
     createTable,
     getTime,
     createTime,
+    deleteDish,
+    deleteCategory,
 };

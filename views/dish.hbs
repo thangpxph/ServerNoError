@@ -102,6 +102,30 @@
             </form>
         </div>
     </div>
+
+    <div class="modal fade" id="deleteId" tabindex="-1" role="dialog" aria-labelledby="deleteTitleId"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="/admin/dish/delete" method="post">
+                <input type="hidden" name="dishIdDel" id="dishIdDel">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="headingDel">Xóa món ăn</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Bạn muốn xóa món ăn này</h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Xóa</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <script>
     document.querySelector('#addBtn').addEventListener('click', e => {
@@ -138,4 +162,14 @@
         })
     }
     addEvent();
+    function delEvent(){
+        document.querySelectorAll('.deleteBtn').forEach(item => {
+            item.addEventListener('click', e =>{
+                let pid = e.target.dataset.id;
+                document.querySelector('#dishIdDel').value = pid;
+                $('#deleteId').modal('show')
+            })
+        })
+    }
+    delEvent();
 </script>
