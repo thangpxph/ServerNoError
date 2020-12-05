@@ -3,6 +3,7 @@ const Category = require('../model/Category');
 const Dish = require('../model/Dish');
 const Table = require('../model/Table');
 const Time = require('../model/Time');
+const Book = require('../model/Book')
 
 const getDashboard = (req, res) => {
     res.render("dashboard", {
@@ -167,16 +168,36 @@ const createTime = async (req, res) => {
         console.log(error.message)
     }
 };
+const getBook = async (req, res) => {
+    let books = await Book.find().select("-__v")
+        .lean();
+    let newData = books.map((item, index) => ({
+        ...item,
+        noNum: index + 1,
+    }));
+    res.render("book", {
+        title: "Quản lý đơn đặt bàn",
+        layout: "dashlayout",
+        bookList: newData,
+    })
+}
+
+
 const deleteDish = async (req, res) => {
     const {dishIdDel} = req.body;
     let dishs = await Dish.findByIdAndDelete(dishIdDel);
     res.redirect("/admin/dish");
-}   
+}
 const deleteCategory = async (req, res) => {
     const {categoryIdDel} = req.body;
     let dishs = await Dish.deleteMany({category: categoryIdDel});
     let category = await Category.findByIdAndDelete(categoryIdDel);
     res.redirect("/admin/category");
+}
+const deleteTable = async (req, res) => {
+    const {tableIdDel} = req.body;
+    let tables = await Table.findByIdAndDelete(tableIdDel);
+    res.redirect("/admin/table");
 }
 module.exports = {
     getDashboard,
@@ -191,4 +212,6 @@ module.exports = {
     createTime,
     deleteDish,
     deleteCategory,
+    deleteTable,
+    getBook,
 };

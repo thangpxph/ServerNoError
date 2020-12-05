@@ -15,8 +15,8 @@ const AdminRoutes = (passport) => {
     router.post("/time/create", dashboard.createTime);
     router.post("/dish/delete", dashboard.deleteDish);
     router.post("/category/delete", dashboard.deleteCategory);
-
+    router.post("/table/delete", dashboard.deleteTable);
+    router.get("/book", dashboard.getBook);
     return router;
 };
-
 module.exports = AdminRoutes;

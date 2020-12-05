@@ -10,9 +10,9 @@
                 <thead>
                 <tr>
                     <th style="width: 10%">#</th>
-                    <th style="width: 40%">Tên bàn</th>
+                    <th style="width: 30%">Tên bàn</th>
                     <th style="width: 20%">Số người</th>
-                    <th style="width: 10%">Trạng thái</th>
+                    <th style="width: 20%">Trạng thái</th>
                     <th style="width: 10%">Hành động</th>
                     <th style="width: 10%">Hành động</th>
                 </tr>
@@ -23,7 +23,16 @@
                         <td>{{noNum}}</td>
                         <td>{{nameTable}}</td>
                         <td>{{amount}}</td>
-                        <td>{{status}}</td>
+                        <td>
+                        <script>
+                            var status = {{status}};
+                            if (status == 1){
+                                document.write("<h6>Bàn trống</h6>")
+                            }else {
+                                document.write("<h6>Bàn đầy</h6>")
+                            }
+                        </script>
+                        </td>
                         <td><button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
                                     class="btn btn-primary">Sửa</button></td>
                         <td><button type="button" name="deleteBtn" class="deleteBtn btn btn-danger" data-id={{_id}}
@@ -66,6 +75,30 @@
             </form>
         </div>
     </div>
+
+    <div class="modal fade" id="deleteId" tabindex="-1" role="dialog" aria-labelledby="deleteTitleId"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="/admin/table/delete" method="post">
+                <input type="hidden" name="tableIdDel" id="tableIdDel">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="headingDel">Xóa bàn</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Bạn muốn xóa bàn này</h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Xóa</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <script>
     document.querySelector('#addBtn').addEventListener('click', e => {
@@ -92,4 +125,15 @@
         })
     }
     addEvent();
+    addEvent();
+    function delEvent(){
+        document.querySelectorAll('.deleteBtn').forEach(item => {
+            item.addEventListener('click', e =>{
+                let pid = e.target.dataset.id;
+                document.querySelector('#tableIdDel').value = pid;
+                $('#deleteId').modal('show')
+            })
+        })
+    }
+    delEvent();
 </script>

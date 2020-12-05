@@ -3,6 +3,7 @@ const Category = require("../../model/Category");
 const Table = require("../../model/Table");
 const Time = require("../../model/Time");
 const Dish = require("../../model/Dish");
+const Book = require("../../model/Book");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -24,6 +25,7 @@ const loginUser = async (req, res) => {
 };
 const signinUser = async (req, res) => {
     const {fullname, phone, password, permission} = req.body;
+    console.log("jhsdbf", phone)
     let user = await User.findOne({phone: phone})
     if (user) {
         res.status(401).json({msg: "1"});
@@ -116,16 +118,35 @@ const getTime = async (req, res) => {
         return res.status(200).json({status: false, msg: "1"})
     }
 };
-const getDish = async (req,res) => {
-    try{
+const getDish = async (req, res) => {
+    try {
         let dishData = await Dish.find().select("-__v");
-        if (dishData){
+        if (dishData) {
             return res.send(dishData);
-        }else
+        } else
             return res.status(200).json({status: false, msg: "1"});
-    }catch (error){
+    } catch (error) {
         return res.status(200).json({status: false, msg: "1"});
     }
+}
+const bookDish = async (req, res) => {
+    const {iduser, idtime, listdist} = req.body;
+
+    let obj = JSON.parse(listdist)
+    let bookDish = new Book();
+    bookDish.user = iduser;
+    bookDish.time = idtime;
+    bookDish.dish = obj;
+
+    let addBook = await bookDish.save((err) => {
+        if (err) {
+            res.json({msg: "1"});
+            console.log(err.message);
+            throw err;
+        }
+        //Trả về thông tin sau khi hoàn tất
+        res.json({msg: "2"});
+    })
 }
 
 module.exports = {
@@ -137,4 +158,5 @@ module.exports = {
     getDish,
     comparisonPhone,
     forgotPassword,
+    bookDish,
 };
