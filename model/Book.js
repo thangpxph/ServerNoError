@@ -1,12 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const  reqString ={
-    type: String,
-    required:true,
-}
 const dishList = mongoose.Schema({
-    dishId: reqString,
+    dishId: {type: Schema.Types.ObjectId, ref: "Dish", require: true},
     amount: {type: Number},
 })
 Book = new mongoose.Schema({
