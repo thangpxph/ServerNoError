@@ -6,6 +6,8 @@ const Dish = new mongoose.Schema({
     category: { type: Schema.Types.ObjectId, ref: "Category", required: true},
     price:{type: Number},
     time:{type: Number},
+    calories:{type: Number},
+    weight:{type: Number},
     ingredient:{type: String},
     status:{type: String},
 });

@@ -146,7 +146,8 @@ const bookDish = async (req, res) => {
             throw err;
         }
         //Trả về thông tin sau khi hoàn tất
-        res.json({msg: "2"});
+        res.json({msg: "2", id: bookDish._id});
+        console.log(bookDish)
     })
 }
 
