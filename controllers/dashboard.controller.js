@@ -169,7 +169,8 @@ const createTime = async (req, res) => {
     }
 };
 const getBook = async (req, res) => {
-    let books = await Book.find().select("-__v")
+    let books = await Book.find()
+        .populate({ path: "user time", select: "fullname phone startingTime endTime" })
         .lean();
     let newData = books.map((item, index) => ({
         ...item,

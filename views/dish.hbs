@@ -39,10 +39,16 @@
                         <td>{{price}}</td>
                         <td>{{time}}</td>
                         <td>{{ingredient}}</td>
-                        <td><button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
-                                    data-categotyid = "{{category._id}}" class="btn btn-primary">Sửa</button></td>
-                        <td><button type="button" name="deleteBtn" class="deleteBtn btn btn-danger" data-id={{_id}}
-                                    class="btn btn-danger">Xóa</button></td>
+                        <td>
+                            <button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
+                                    data-categotyid="{{category._id}}" class="btn btn-primary">Sửa
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" name="deleteBtn" class="deleteBtn btn btn-danger" data-id={{_id}}
+                                    class="btn btn-danger">Xóa
+                            </button>
+                        </td>
                     </tr>
                 {{/each}}
                 </tbody>
@@ -139,6 +145,7 @@
         document.querySelector('#ingredient').value = "";
         document.querySelector('#category').selectedIndex = 0
     })
+
     function addEvent() {
         document.querySelectorAll('.editBtn').forEach(item => {
             item.addEventListener('click', e => {
@@ -161,15 +168,18 @@
             })
         })
     }
+
     addEvent();
-    function delEvent(){
+
+    function delEvent() {
         document.querySelectorAll('.deleteBtn').forEach(item => {
-            item.addEventListener('click', e =>{
+            item.addEventListener('click', e => {
                 let pid = e.target.dataset.id;
                 document.querySelector('#dishIdDel').value = pid;
                 $('#deleteId').modal('show')
             })
         })
     }
+
     delEvent();
 </script>

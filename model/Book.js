@@ -7,6 +7,7 @@ const dishList = mongoose.Schema({
 })
 Book = new mongoose.Schema({
     user: {type: Schema.Types.ObjectId, ref: "User", require: true},
+    people: {type: Number},
     time: {type: Schema.Types.ObjectId, ref: "Time", require: true},
     dish: [dishList]
 });
