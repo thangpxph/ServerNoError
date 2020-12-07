@@ -129,6 +129,18 @@ const getDish = async (req, res) => {
         return res.status(200).json({status: false, msg: "1"});
     }
 }
+const getDishByCategory = async (req, res) => {
+    const {idCategory} = req.body;
+    try {
+        let dishs = await Dish.find({category: idCategory}).lean();
+        if (dishs) {
+            return res.send(dishs);
+        } else
+            return res.status(200).json({status: false, msg: "1"});
+    }catch (error) {
+        return res.status(200).json({status: false, msg: "1"});
+    }
+}
 const bookDish = async (req, res) => {
     const {iduser, people, idtime, listdist} = req.body;
 
@@ -161,4 +173,5 @@ module.exports = {
     comparisonPhone,
     forgotPassword,
     bookDish,
+    getDishByCategory,
 };
