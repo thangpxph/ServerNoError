@@ -13,14 +13,14 @@ const loginUser = async (req, res) => {
     if (phone && password) {
         let users = await User.findOne({phone});
         if (!users) {
-            res.status(401).json({msg: "1", token: "", permission: "", username: ""});
+            res.status(401).json({id:"",msg: "1", token: "", permission: "", username: ""});
         }
         if (isValidPassword(users, password)) {
             let payload = {_id: users._id};
             let token = jwt.sign(payload, secretOrKey);
             res.json({ id: users._id, msg: "3", token: token, permission: users.permission, username: users.fullname});
         } else
-            res.status(401).json({msg: "2", token: "", permission: "", username: ""});
+            res.status(401).json({id: "", msg: "2", token: "", permission: "", username: ""});
     }
 };
 const signinUser = async (req, res) => {
@@ -141,6 +141,8 @@ const getDishByCategory = async (req, res) => {
         return res.status(200).json({status: false, msg: "1"});
     }
 }
+
+
 const bookDish = async (req, res) => {
     const {iduser, people, idtime, listdist} = req.body;
 
@@ -163,6 +165,18 @@ const bookDish = async (req, res) => {
     })
 }
 
+const getBookById = async (req, res) => {
+    const {id} = req.body;
+    try {
+        let books = await Book.find({user: id}).lean();
+        if (books){
+            return res.send(books);
+        }else
+            return res.status(200).json({status: false, msg: "1"});
+    }catch (error){
+        return res.status(200).json({status: false, msg: "1"});
+    }
+}
 module.exports = {
     loginUser,
     signinUser,
@@ -174,4 +188,5 @@ module.exports = {
     forgotPassword,
     bookDish,
     getDishByCategory,
+    getBookById,
 };

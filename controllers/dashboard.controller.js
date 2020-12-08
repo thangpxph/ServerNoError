@@ -217,6 +217,11 @@ const deleteTable = async (req, res) => {
     let tables = await Table.findByIdAndDelete(tableIdDel);
     res.redirect("/admin/table");
 }
+const deleteTime = async (req, res) => {
+    const {timeIdDel} = req.body;
+    let times = await Time.findByIdAndDelete(timeIdDel);
+    res.redirect("/admin/time");
+}
 module.exports = {
     getDashboard,
     getUserMananger,
@@ -232,4 +237,5 @@ module.exports = {
     deleteCategory,
     deleteTable,
     getBook,
+    deleteTime,
 };
