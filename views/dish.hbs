@@ -18,26 +18,30 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Hình ảnh</th>
-                    <th>Tên món ăn</th>
-                    <th>Thể loại</th>
-                    <th>Giá tiền</th>
-                    <th>Thời gian làm</th>
-                    <th>Thành phần</th>
-                    <th>Hành động</th>
-                    <th>Hành động</th>
+                    <th style="width: 2%">#</th>
+                    <th style="width: 10%">Hình ảnh</th>
+                    <th style="width: 15%">Tên món ăn</th>
+                    <th style="width: 10%">Thể loại</th>
+                    <th style="width: 13%">Giá tiền</th>
+                    <th style="width: 10%">Thời gian</th>
+                    <th style="width: 10%">Lượng Calo</th>
+                    <th style="width: 8%">Trọng lượng</th>
+                    <th style="width: 15%">Thành phần</th>
+                    <th style="width: 5%">Hành động</th>
+                    <th style="width: 5%">Hành động</th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
                 {{#each dishList}}
                     <tr>
                         <td>{{noNum}}</td>
-                        <td>{{imageDish}}</td>
+                        <td><img width="100px" src={{imageDish}}></td>
                         <td>{{nameDish}}</td>
                         <td>{{category.nameCategory}}</td>
-                        <td>{{price}}</td>
-                        <td>{{time}}</td>
+                        <td>{{price}} đồng</td>
+                        <td>{{time}} phút</td>
+                        <td>{{calories}} Kcal</td>
+                        <td>{{weight}} g</td>
                         <td>{{ingredient}}</td>
                         <td>
                             <button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
@@ -58,7 +62,7 @@
     <!-- Modal -->
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="/admin/dish/create" method="post">
+            <form action="/admin/dish/create" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="dishId" id="dishId">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -73,31 +77,46 @@
                             <input type="text" class="form-control" name="nameDish" id="nameDish"
                                    placeholder="Tên món ăn">
                         </div>
-                        <div class="form-group">
-                            <label for="category">Thể loại</label>
-                            <select class="form-control" name="category" id="category">
-                                {{#each categorys}}
-                                    <option value="{{_id}}">{{nameCategory}}</option>
-                                {{/each}}
-                            </select>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="category">Thể loại</label>
+                                <select class="form-control" name="category" id="category">
+                                    {{#each categorys}}
+                                        <option value="{{_id}}">{{nameCategory}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="price">Giá tiền ( VND )</label>
+                                <input type="number" class="form-control" name="price" id="price"
+                                       placeholder="Giá tiền">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-8">
+                                <label for="time">Thời gian hoàn thiện ( phút )</label>
+                                <input type="number" class="form-control" name="time" id="time"
+                                       placeholder="Thời gian hoàn thiện">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="calories">Lượng Calo( Kcal )</label>
+                                <input type="number" class="form-control" name="calories" id="calories"
+                                       placeholder="Lượng Calo">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="price">Giá tiền</label>
-                            <input type="number" class="form-control" name="price" id="price"
-                                   placeholder="Giá tiền">
-                        </div>
-                        <div class="form-group">
-                            <label for="time">Thời gian hoàn thiện</label>
-                            <input type="number" class="form-control" name="time" id="time"
-                                   placeholder="Giá tiền">
+                            <label for="weight">Trọng lượng ( g )</label>
+                            <input type="number" class="form-control" name="weight" id="weight"
+                                   placeholder="Trọng lượng">
                         </div>
                         <div class="form-group">
                             <label for="ingredient">Thành phần</label>
                             <textarea class="form-control" name="ingredient" id="ingredient" rows="3"></textarea>
                         </div>
                         <div class="btn btn-secondary-success btn-rounded waves-effect btn-sm float-left w-full text-left">
+                            <label for="image">Hình ảnh minh họa</label>
                             <span>Choose file</span>
-                            <input type="file" name="imageDish">
+                            <input type="file" name="image">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -142,7 +161,9 @@
         document.querySelector('#price').value = "";
         document.querySelector('#imageDish').value = "";
         document.querySelector('#time').value = "";
-        document.querySelector('#ingredient').value = "";
+        document.querySelector('#calories').value = "";
+        document.querySelector('#time').value = "";
+        document.querySelector('#weight').value = "";
         document.querySelector('#category').selectedIndex = 0
     })
 
@@ -155,13 +176,17 @@
                 let nameDish = pr.getElementsByTagName('td')[2].innerText;
                 let price = pr.getElementsByTagName('td')[4].innerText;
                 let time = pr.getElementsByTagName('td')[5].innerText;
-                let ingredient = pr.getElementsByTagName('td')[6].innerText;
+                let calories = pr.getElementsByTagName('td')[6].innerText;
+                let weight = pr.getElementsByTagName('td')[7].innerText;
+                let ingredient = pr.getElementsByTagName('td')[8].innerText;
                 document.querySelector('#heading').innerText = "Sửa món ăn";
                 document.querySelector('#submitBtn').innerText = "Cập nhật";
                 document.querySelector('#nameDish').value = nameDish;
                 document.querySelector('#dishId').value = pid;
                 document.querySelector('#price').value = price;
                 document.querySelector('#time').value = time;
+                document.querySelector('#calories').value = calories;
+                document.querySelector('#weight').value = weight;
                 document.querySelector('#ingredient').value = ingredient;
                 document.querySelector('#category').value = category;
                 $('#modelId').modal('show')

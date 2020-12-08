@@ -6,10 +6,13 @@ const expressSession = require("express-session");
 const Routes = require("./routes/index");
 const AdminRoutes = require("./routes/dashboard.route");
 const apiRoutes = require("./routes/apiRoutes");
+const bodyParser = require('body-parser');
 
 var initPassport = require("./passports/initSetup");
 const flash = require("connect-flash");
 app.use(flash());
+
+app.use(bodyParser.json()).use(bodyParser.urlencoded({ extended: true}))
 
 //Cấu hình thư mục public
 app.use(express.static(__dirname + "/public"));

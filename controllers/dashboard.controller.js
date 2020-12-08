@@ -4,6 +4,8 @@ const Dish = require('../model/Dish');
 const Table = require('../model/Table');
 const Time = require('../model/Time');
 const Book = require('../model/Book')
+require('dotenv').config();
+const cloudinary = require("../config/cloudinary");
 
 const getDashboard = (req, res) => {
     res.render("dashboard", {
@@ -63,7 +65,7 @@ const createCategory = async (req, res) => {
 const getDish = async (req, res) => {
     let categorys = await Category.find().lean();
     let dishs = await Dish.find()
-        .populate({ path: "category", select: "nameCategory" })
+        .populate({path: "category", select: "nameCategory"})
         .lean();
     let newData = dishs.map((item, index) => ({
         ...item,
@@ -79,7 +81,10 @@ const getDish = async (req, res) => {
 };
 
 const createDish = async (req, res) => {
-    const {dishId, nameDish, price, time, ingredient, imageDish, category} = req.body;
+    const {dishId, nameDish, price, time, calories, weight, ingredient, category} = req.body;
+    const image = req.file;
+    console.log(image)
+
     try {
         if (dishId != "") {
             let updateData = await Dish.findByIdAndUpdate(
@@ -87,6 +92,8 @@ const createDish = async (req, res) => {
                     nameDish,
                     price,
                     time,
+                    calories,
+                    weight,
                     ingredient,
                     imageDish,
                     category
@@ -94,7 +101,17 @@ const createDish = async (req, res) => {
                 {new: true}
             );
         } else {
-            let createData = await Dish.create({nameDish, price, time, ingredient, imageDish, category})
+            const result = await cloudinary.uploader.upload(image.path);
+            let createData = await Dish.create({
+                nameDish,
+                price,
+                time,
+                calories,
+                weight,
+                ingredient,
+                imageDish: result.secure_url,
+                category
+            })
         }
         res.redirect("/admin/dish");
     } catch (error) {
@@ -170,7 +187,7 @@ const createTime = async (req, res) => {
 };
 const getBook = async (req, res) => {
     let books = await Book.find()
-        .populate({ path: "user time", select: "fullname phone startingTime endTime" })
+        .populate({path: "user time", select: "fullname phone startingTime endTime"})
         .lean();
     let newData = books.map((item, index) => ({
         ...item,
