@@ -144,14 +144,16 @@ const getDishByCategory = async (req, res) => {
 
 
 const bookDish = async (req, res) => {
-    const {iduser, people, idtime, listdist} = req.body;
+    const {iduser, people, time, listdist, money, status} = req.body;
 
     let obj = JSON.parse(listdist)
     let bookDish = new Book();
     bookDish.user = iduser;
     bookDish.people= people,
-    bookDish.time = idtime;
+    bookDish.time = time;
     bookDish.dish = obj;
+    bookDish.money= money;
+    bookDish.status= status;
 
     let addBook = await bookDish.save((err) => {
         if (err) {
@@ -166,9 +168,9 @@ const bookDish = async (req, res) => {
 }
 
 const getBookById = async (req, res) => {
-    const {id} = req.body;
+    const {id, status} = req.body;
     try {
-        let books = await Book.find({user: id}).lean();
+        let books = await Book.find({user: id, status: status}).lean();
         if (books){
             return res.send(books);
         }else

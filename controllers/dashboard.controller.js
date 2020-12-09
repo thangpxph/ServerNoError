@@ -152,6 +152,14 @@ const createTable = async (req, res) => {
         console.log(error.message)
     }
 };
+
+const resetTime = async (req, res) => {
+    const {resetTime} = req.body;
+    console.log(resetTime)
+    let times = await Time.updateMany({slot: resetTime});
+    res.redirect("/admin/time");
+}
+
 const getTime = async (req, res) => {
     let times = await Time.find()
         .select("-__v")
@@ -167,18 +175,19 @@ const getTime = async (req, res) => {
     })
 };
 const createTime = async (req, res) => {
-    const {timeId, startingTime, endTime} = req.body;
+    const {timeId, startingTime, endTime, slot} = req.body;
     try {
         if (timeId !== "") {
             let updateData = await Time.findByIdAndUpdate(
                 timeId, {
                     startingTime,
                     endTime,
+                    slot,
                 },
                 {new: true}
             );
         } else {
-            let createData = await Time.create({startingTime, endTime, status: 1})
+            let createData = await Time.create({startingTime, endTime, slot})
         }
         res.redirect("/admin/time");
     } catch (error) {
@@ -186,7 +195,7 @@ const createTime = async (req, res) => {
     }
 };
 const getBook = async (req, res) => {
-    let books = await Book.find()
+    let books = await Book.find({status: 1})
         .populate({path: "user time", select: "fullname phone startingTime endTime"})
         .lean();
     let newData = books.map((item, index) => ({
@@ -238,4 +247,5 @@ module.exports = {
     deleteTable,
     getBook,
     deleteTime,
+    resetTime,
 };

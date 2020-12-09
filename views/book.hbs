@@ -24,9 +24,12 @@
                         <td>{{user.phone}}</td>
                         <td>{{people}}</td>
                         <td>{{time.startingTime}}-{{time.endTime}}</td>
+                        {{#dish}}
+                            <td>{{dish}}</td>
+                        {{/dish}}
                         <td>
                             <button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
-                                    data-categotyid="{{category._id}}" class="btn btn-primary">Chi tiết
+                                    data-categotyid="{{dish._id}}" class="btn btn-primary">Chi tiết
                             </button>
                         </td>
 

@@ -32,12 +32,23 @@
         </a>
     </div>
 
-<!--    <a href="/admin/table" class="list-group-item list-group-item-action">Quản lý bàn ăn</a>-->
-<!--    <a href="/admin/time" class="list-group-item list-group-item-action">Quản lý khung giờ</a>-->
-<!--    <a href="/admin/category" class="list-group-item list-group-item-action">Quản lý thể loại món ăn</a>-->
-<!--    <a href="/admin/dish" class="list-group-item list-group-item-action">Quản lý món ăn</a>-->
-    <a href="/admin/book" class="list-group-item list-group-item-action">Đơn đặt bàn</a>
-<!--    <a href="/admin/users" class="list-group-item list-group-item-action">Quản lý người dùng</a>-->
-
-
+    <a href="#donhang" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-start align-items-center">
+            <span class="fa fa-dashboard fa-fw mr-3"></span>
+            <span class="menu-collapsed">Đơn hàng</span>
+            <span class="submenu-icon ml-auto"></span>
+        </div>
+    </a>
+    <!-- Submenu content -->
+    <div id='donhang' class="collapse sidebar-submenu">
+        <a href="/admin/book" class="list-group-item list-group-item-action">
+            <span class="menu-collapsed">Đơn đặt bàn</span>
+        </a>
+        <a href="/admin/category" class="list-group-item list-group-item-action">
+            <span class="menu-collapsed">Đơn hủy</span>
+        </a>
+        <a href="/admin/dish" class="list-group-item list-group-item-action">
+            <span class="menu-collapsed">Đơn hoàn thành</span>
+        </a>
+    </div>
 </div>

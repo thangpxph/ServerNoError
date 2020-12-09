@@ -6,12 +6,16 @@
             <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                 Thêm khung giờ
             </button>
+            <button style="right: 50px; position: absolute" type="button" id="resetBtn" class="btn btn-primary"data-toggle="modal" data-target="#resetId">
+                Reset slot
+            </button>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th style="width: 10%">#</th>
-                    <th style="width: 35%">Bắt đầu</th>
-                    <th style="width: 35%">Kết thúc</th>
+                    <th style="width: 25%">Bắt đầu</th>
+                    <th style="width: 25%">Kết thúc</th>
+                    <th style="width: 20%">Slot</th>
                     <th style="width: 10%">Hành động</th>
                     <th style="width: 10%">Hành động</th>
                 </tr>
@@ -22,6 +26,7 @@
                         <td>{{noNum}}</td>
                         <td>{{startingTime}}</td>
                         <td>{{endTime}}</td>
+                        <td>{{slot}}</td>
                         <td>
                             <button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
                                     class="btn btn-primary">Sửa
@@ -53,15 +58,19 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
                                 <label for="startingTime">Thời gian bắt đầu</label>
                                 <input type="time" class="form-control" name="startingTime" id="startingTime"
                                        placeholder="Thời gian bắt đầu">
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
                                 <label for="endTime">Thời gian kết thúc</label>
                                 <input type="time" class="form-control" name="endTime" id="endTime"
                                        placeholder="Thời gian kết thúc">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="slot">Slot</label>
+                                <input type="number" class="form-control" name="slot" id="slot">
                             </div>
                         </div>
                     </div>
@@ -95,6 +104,29 @@
             </form>
         </div>
     </div>
+
+    <div class="modal fade" id="resetId" tabindex="-1" role="dialog" aria-labelledby="resetTitleId">
+        <div class="modal-dialog" role="document">
+            <form action="/admin/time/reset" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="headingDel">Reset slot</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Bạn muốn reset lại slot</h6>
+                        <input type="number" name="resetTime" id="reset">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <script>
     document.querySelector('#addBtn').addEventListener('click', e => {
@@ -103,6 +135,7 @@
         document.querySelector('#startingTime').value = "";
         document.querySelector('#timeId').value = "";
         document.querySelector('#endTime').value = "";
+        document.querySelector('#slot').value = "";
     })
 
     function addEvent() {
@@ -112,24 +145,42 @@
                 let pr = e.target.parentNode.parentNode;
                 let startingTime = pr.getElementsByTagName('td')[1].innerText;
                 let endTime = pr.getElementsByTagName('td')[2].innerText;
+                let slot = pr.getElementsByTagName('td')[3].innerText;
                 document.querySelector('#heading').innerText = "Sửa thể loại";
                 document.querySelector('#submitBtn').innerText = "Cập nhật";
                 document.querySelector('#startingTime').value = startingTime;
                 document.querySelector('#endTime').value = endTime;
+                document.querySelector('#slot').value = slot;
                 document.querySelector('#timeId').value = pid;
                 $('#modelId').modal('show')
             })
         })
     }
+
     addEvent();
-    function delEvent(){
+
+    function delEvent() {
         document.querySelectorAll('.deleteBtn').forEach(item => {
-            item.addEventListener('click', e =>{
+            item.addEventListener('click', e => {
                 let pid = e.target.dataset.id;
                 document.querySelector('#timeIdDel').value = pid;
                 $('#deleteId').modal('show')
             })
         })
     }
+
     delEvent();
+
+    function resetEvent() {
+        document.querySelectorAll('.resetBtn').forEach(item => {
+            item.addEventListener('click', e => {
+                let pr = e.target.parentNode.parentNode;
+                let resetTime = pr.getElementsByTagName('td')[1].innerText;
+                document.querySelector('#resetTime').value = resetTime;
+                $('#resetId').modal('show')
+            })
+        })
+    }
+
+    resetEvent();
 </script>
