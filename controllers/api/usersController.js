@@ -13,12 +13,12 @@ const loginUser = async (req, res) => {
     if (phone && password) {
         let users = await User.findOne({phone});
         if (!users) {
-            res.status(401).json({id:"",msg: "1", token: "", permission: "", username: ""});
+            res.status(401).json({id: "", msg: "1", token: "", permission: "", username: ""});
         }
         if (isValidPassword(users, password)) {
             let payload = {_id: users._id};
             let token = jwt.sign(payload, secretOrKey);
-            res.json({ id: users._id, msg: "3", token: token, permission: users.permission, username: users.fullname});
+            res.json({id: users._id, msg: "3", token: token, permission: users.permission, username: users.fullname});
         } else
             res.status(401).json({id: "", msg: "2", token: "", permission: "", username: ""});
     }
@@ -137,7 +137,18 @@ const getDishByCategory = async (req, res) => {
             return res.send(dishs);
         } else
             return res.status(200).json({status: false, msg: "1"});
-    }catch (error) {
+    } catch (error) {
+        return res.status(200).json({status: false, msg: "1"});
+    }
+}
+const getDishByCategoryWeb = async (req, res) => {
+    try {
+        let dishs = await Dish.find({category: req.params.id})
+            .populate({path: "category", select: "nameCategory"})
+            .lean();
+
+        return res.status(200).json({status: true, data: dishs});
+    } catch (error) {
         return res.status(200).json({status: false, msg: "1"});
     }
 }
@@ -149,11 +160,11 @@ const bookDish = async (req, res) => {
     let obj = JSON.parse(listdist)
     let bookDish = new Book();
     bookDish.user = iduser;
-    bookDish.people= people,
-    bookDish.time = time;
+    bookDish.people = people,
+        bookDish.time = time;
     bookDish.dish = obj;
-    bookDish.money= money;
-    bookDish.status= status;
+    bookDish.money = money;
+    bookDish.status = status;
 
     let addBook = await bookDish.save((err) => {
         if (err) {
@@ -171,11 +182,11 @@ const getBookById = async (req, res) => {
     const {id, status} = req.body;
     try {
         let books = await Book.find({user: id, status: status}).lean();
-        if (books){
+        if (books) {
             return res.send(books);
-        }else
+        } else
             return res.status(200).json({status: false, msg: "1"});
-    }catch (error){
+    } catch (error) {
         return res.status(200).json({status: false, msg: "1"});
     }
 }
@@ -191,4 +202,5 @@ module.exports = {
     bookDish,
     getDishByCategory,
     getBookById,
+    getDishByCategoryWeb
 };

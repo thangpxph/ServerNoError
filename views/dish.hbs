@@ -207,4 +207,40 @@
     }
 
     delEvent();
+
+    document.querySelector('#category2').addEventListener('change', e => {
+        fetch(`/api/v1/dishByCategoryWeb/${e.target.value}`)
+                .then(res => res.json())
+                .then(response => {
+                    console.log(response.data)
+                    let innerHtml = '';
+                    if (response.data.length > 0) {
+                        response.data.forEach((elm, index) => {
+                            innerHtml += `<tr>
+                        <td>${index + 1}</td>
+                        <td><img width="100px" src=${elm.imageDish}></td>
+                        <td>${elm.nameDish}</td>
+                        <td>${elm.category.nameCategory}</td>
+                        <td>${elm.price}</td>
+                        <td>${elm.time}</td>
+                        <td>${elm.calories}</td>
+                        <td>${elm.weight}</td>
+                        <td>${elm.ingredient}</td>
+                        <td><button type="button" name="editBtn" class="editBtn btn btn-primary" data-id=${elm._id}
+                                data-authorid="${elm.category._id}" class="btn btn-primary">Sửa</button></td>
+                        <td><button type="button" name="deleteBtn" class="deleteBtn btn btn-danger" data-id=${elm._id}
+                                    class="btn btn-danger">Xóa
+                            </button></td>
+                    </tr>`
+                        })
+                    } else {
+                        innerHtml += `<tr>
+                        <td>Không có món ăn nào</td>
+                    </tr>`
+                    }
+                    document.querySelector('#tbody').innerHTML = innerHtml;
+                    addEvent();
+                    delEvent();
+                })
+    })
 </script>
