@@ -160,8 +160,8 @@ const bookDish = async (req, res) => {
     let obj = JSON.parse(listdist)
     let bookDish = new Book();
     bookDish.user = iduser;
-    bookDish.people = people,
-        bookDish.time = time;
+    bookDish.people = people;
+    bookDish.time = time;
     bookDish.dish = obj;
     bookDish.money = money;
     bookDish.status = status;

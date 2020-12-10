@@ -12,6 +12,6 @@ Book = new mongoose.Schema({
     time: {type: String},
     dish: [dishList],
     money: {type: Number},
-    status: Number
+    status: {type: Number},
 });
 module.exports = mongoose.model("Book", Book);
