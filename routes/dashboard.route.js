@@ -21,6 +21,8 @@ const AdminRoutes = (passport) => {
     router.post("/time/delete", dashboard.deleteTime);
     router.post("/time/reset", dashboard.resetTime);
     router.get("/book", dashboard.getBook);
+    router.get("/cancellationorder", dashboard.getCancellationOrder);
+    router.get("/completedorders", dashboard.getCompletedOrders);
     return router;
 };
 module.exports = AdminRoutes;

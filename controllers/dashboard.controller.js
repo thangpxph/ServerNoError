@@ -208,6 +208,34 @@ const getBook = async (req, res) => {
         bookList: newData,
     })
 }
+const getCancellationOrder = async (req, res) => {
+    let books = await Book.find({status: 3})
+        .populate({path: "user time", select: "fullname phone startingTime endTime"})
+        .lean();
+    let newData = books.map((item, index) => ({
+        ...item,
+        noNum: index + 1,
+    }));
+    res.render("cancellationorder", {
+        title: "Quản lý đơn đặt bàn",
+        layout: "dashlayout",
+        bookList: newData,
+    })
+}
+const getCompletedOrders = async (req, res) => {
+    let books = await Book.find({status: 2})
+        .populate({path: "user time", select: "fullname phone startingTime endTime"})
+        .lean();
+    let newData = books.map((item, index) => ({
+        ...item,
+        noNum: index + 1,
+    }));
+    res.render("cancellationorder", {
+        title: "Quản lý đơn đặt bàn",
+        layout: "dashlayout",
+        bookList: newData,
+    })
+}
 
 
 const deleteDish = async (req, res) => {
@@ -248,4 +276,6 @@ module.exports = {
     getBook,
     deleteTime,
     resetTime,
+    getCancellationOrder,
+    getCompletedOrders,
 };
