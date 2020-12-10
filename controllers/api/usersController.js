@@ -141,18 +141,6 @@ const getDishByCategory = async (req, res) => {
         return res.status(200).json({status: false, msg: "1"});
     }
 }
-const getDishByCategoryWeb = async (req, res) => {
-    try {
-        let dishs = await Dish.find({category: req.params.id})
-            .populate({path: "category", select: "nameCategory"})
-            .lean();
-
-        return res.status(200).json({status: true, data: dishs});
-    } catch (error) {
-        return res.status(200).json({status: false, msg: "1"});
-    }
-}
-
 
 const bookDish = async (req, res) => {
     const {iduser, people, time, listdist, money, status} = req.body;
@@ -202,5 +190,4 @@ module.exports = {
     bookDish,
     getDishByCategory,
     getBookById,
-    getDishByCategoryWeb
 };

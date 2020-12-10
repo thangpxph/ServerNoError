@@ -19,10 +19,14 @@ const AdminRoutes = (passport) => {
     router.post("/category/delete", dashboard.deleteCategory);
     router.post("/table/delete", dashboard.deleteTable);
     router.post("/time/delete", dashboard.deleteTime);
+    router.post("/book/delete", dashboard.deleteBook);
+    router.post("/book/submit", dashboard.deleteBook);
     router.post("/time/reset", dashboard.resetTime);
     router.get("/book", dashboard.getBook);
     router.get("/cancellationorder", dashboard.getCancellationOrder);
     router.get("/completedorders", dashboard.getCompletedOrders);
+    router.get("/dishByCategoryWeb/:id", dashboard.getDishByCategoryWeb);
+    router.get("/bookByIdWeb/:id", dashboard.getBookByIdWeb);
     return router;
 };
 module.exports = AdminRoutes;

@@ -16,7 +16,6 @@ const apiRoutes = (passport) => {
     router.get("/dish", jwtAuthenticated, userController.getDish);
     router.post("/bookDish", jwtAuthenticated, userController.bookDish);
     router.post("/dishByCategory", jwtAuthenticated, userController.getDishByCategory);
-    router.get("/dishByCategoryWeb/:id", userController.getDishByCategoryWeb);
     router.post("/bookById", jwtAuthenticated, userController.getBookById);
     return router;
 };

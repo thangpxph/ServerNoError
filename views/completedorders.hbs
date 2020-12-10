@@ -1,19 +1,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>Quản lý đơn đặt hàng</h3>
+            <h3>Quản lý đơn hoàn thành</h3>
             <!-- Button trigger modal -->
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th style="width: 10%">#</th>
-                    <th style="width: 15%">Tên Khách hàng</th>
-                    <th style="width: 15%">Số điện thoại</th>
+                    <th style="width: 20%">Tên Khách hàng</th>
+                    <th style="width: 20%">Số điện thoại</th>
                     <th style="width: 10%">Số người</th>
-                    <th style="width: 13%">Khung giờ</th>
-                    <th style="width: 10%">Món ăn</th>
-                    <th style="width: 12%">Hành động</th>
-                    <th style="width: 15%">Hành động</th>
+                    <th style="width: 15%">Khung giờ</th>
+                    <th style="width: 15%">Món ăn</th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
@@ -25,113 +23,15 @@
                         <td>{{people}}</td>
                         <td>{{time}}</td>
                         <td>
-                            <button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
-                                    data-categotyid="{{dish._id}}" class="btn btn-primary">Chi tiết
-                            </button>
+                            <a href="/admin/bookByIdWeb/{{_id}}" type="button" name="showBtn" class="showBtn btn btn-primary"
+                               data-id={{_id}}
+                               class="btn btn-primary">Chi tiết
+                            </a>
                         </td>
-
-                        <td>
-                            <button type="button" name="deleteBtn" class="deleteBtn btn btn-danger" data-id={{_id}}
-                                    class="btn btn-danger">Hủy
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" name="submitBtn" class="editBtn btn btn-primary" data-id={{_id}}
-                                    class="btn btn-primary">Hoàn thành
-                            </button>
-                        </td>
-
-                    </tr>
                 {{/each}}
                 </tbody>
             </table>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="/admin/category/create" method="post">
-                <input type="hidden" name="categoryId" id="categoryId">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="heading">Thêm thể loại</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="title">Tên thể loại</label>
-                            <input type="text" class="form-control" name="title" id="title"
-                                   placeholder="Tên thể loại">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                        <button type="submit" id="submitBtn" class="btn btn-primary">Đăng</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="modal fade" id="deleteId" tabindex="-1" role="dialog" aria-labelledby="deleteTitleId"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="/admin/category/delete" method="post">
-                <input type="hidden" name="categoryIdDel" id="categoryIdDel">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="headingDel">Xóa thể loại</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h6>Bạn muốn xóa thể loại và tất cả món ăn trong thể loại này</h6>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                        <button type="submit" id="submitBtn" class="btn btn-primary">Xóa</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+
 </div>
-<script>
-    document.querySelector('#addBtn').addEventListener('click', e => {
-        document.querySelector('#heading').innerText = "Thêm thể loại";
-        document.querySelector('#submitBtn').innerText = "Đăng";
-        document.querySelector('#title').value = "";
-        document.querySelector('#categoryId').value = "";
-    })
-
-    function addEvent() {
-        document.querySelectorAll('.editBtn').forEach(item => {
-            item.addEventListener('click', e => {
-                let pid = e.target.dataset.id;
-                let pr = e.target.parentNode.parentNode;
-                let title = pr.getElementsByTagName('td')[1].innerText;
-                document.querySelector('#heading').innerText = "Sửa thể loại";
-                document.querySelector('#submitBtn').innerText = "Cập nhật";
-                document.querySelector('#title').value = title;
-                document.querySelector('#categoryId').value = pid;
-                $('#modelId').modal('show')
-            })
-        })
-    }
-
-    addEvent();
-
-    function delEvent() {
-        document.querySelectorAll('.deleteBtn').forEach(item => {
-            item.addEventListener('click', e => {
-                let pid = e.target.dataset.id;
-                document.querySelector('#categoryIdDel').value = pid;
-                $('#deleteId').modal('show')
-            })
-        })
-    }
-
-    delEvent();
-</script>

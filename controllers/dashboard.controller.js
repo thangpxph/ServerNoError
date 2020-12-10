@@ -196,7 +196,7 @@ const createTime = async (req, res) => {
 };
 const getBook = async (req, res) => {
     let books = await Book.find({status: 1})
-        .populate({path: "user time", select: "fullname phone startingTime endTime"})
+        .populate({path: "user", select: "fullname phone"})
         .lean();
     let newData = books.map((item, index) => ({
         ...item,
@@ -210,7 +210,7 @@ const getBook = async (req, res) => {
 }
 const getCancellationOrder = async (req, res) => {
     let books = await Book.find({status: 3})
-        .populate({path: "user time", select: "fullname phone startingTime endTime"})
+        .populate({path: "user", select: "fullname phone"})
         .lean();
     let newData = books.map((item, index) => ({
         ...item,
@@ -224,13 +224,13 @@ const getCancellationOrder = async (req, res) => {
 }
 const getCompletedOrders = async (req, res) => {
     let books = await Book.find({status: 2})
-        .populate({path: "user time", select: "fullname phone startingTime endTime"})
+        .populate({path: "user", select: "fullname phone"})
         .lean();
     let newData = books.map((item, index) => ({
         ...item,
         noNum: index + 1,
     }));
-    res.render("cancellationorder", {
+    res.render("completedorders", {
         title: "Quản lý đơn đặt bàn",
         layout: "dashlayout",
         bookList: newData,
@@ -258,6 +258,50 @@ const deleteTime = async (req, res) => {
     const {timeIdDel} = req.body;
     let times = await Time.findByIdAndDelete(timeIdDel);
     res.redirect("/admin/time");
+};
+const deleteBook = async (req, res) => {
+    const {bookIdDel} = req.body;
+    let books = await Book.findByIdAndUpdate(bookIdDel,
+        {
+            status: 3,
+        })
+    res.redirect("/admin/cancellationorder");
+}
+const submitBook = async (req, res) => {
+    const {bookIdSubmit} = req.body;
+    let books = await Book.findByIdAndUpdate(bookIdSubmit,
+        {
+            status: 2,
+        })
+    res.redirect("/admin/completedorders");
+}
+const getBookByIdWeb = async (req, res) => {
+    try {
+        let books = await Book.findOne({_id: req.params.id}).select("dish -_id").lean();
+        console.log(books.dish)
+        let newData = books.dish.map((item, index) => ({
+            ...item,
+            noNum: index + 1,
+        }));
+        res.render("detaltorder", {
+            title: "Chi tiết đơn hàng",
+            layout: "dashlayout",
+            bookList: newData,
+        })
+    } catch (error) {
+        return res.status(200).json({status: false, msg: "1"});
+    }
+}
+const getDishByCategoryWeb = async (req, res) => {
+    try {
+        let dishs = await Dish.find({category: req.params.id})
+            .populate({path: "category", select: "nameCategory"})
+            .lean();
+
+        return res.status(200).json({status: true, data: dishs});
+    } catch (error) {
+        return res.status(200).json({status: false, msg: "1"});
+    }
 }
 module.exports = {
     getDashboard,
@@ -278,4 +322,8 @@ module.exports = {
     resetTime,
     getCancellationOrder,
     getCompletedOrders,
+    getBookByIdWeb,
+    getDishByCategoryWeb,
+    deleteBook,
+    submitBook,
 };

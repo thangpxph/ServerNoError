@@ -209,10 +209,9 @@
     delEvent();
 
     document.querySelector('#category2').addEventListener('change', e => {
-        fetch(`/api/v1/dishByCategoryWeb/${e.target.value}`)
+        fetch(`/admin/dishByCategoryWeb/${e.target.value}`)
                 .then(res => res.json())
                 .then(response => {
-                    console.log(response.data)
                     let innerHtml = '';
                     if (response.data.length > 0) {
                         response.data.forEach((elm, index) => {

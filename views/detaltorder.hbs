@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Cho tiết đơn hàng</h3>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th style="width: 10%">#</th>
+                    <th style="width: 30%">Hình ảnh</th>
+                    <th style="width: 40%">Tên món ăn</th>
+                    <th style="width: 20%">Số lượng</th>
+                </tr>
+                </thead>
+            <tbody id="tbody">
+                {{#each bookList}}
+                <tr>
+                    <td>{{noNum}}</td>
+
+                        <td><img width="100px" src={{imageDish}}></td>
+                        <td>{{nameDish}}</td>
+                        <td>{{amount}}</td>
+                            <br>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
