@@ -23,7 +23,7 @@ const AdminRoutes = (passport) => {
     router.post("/table/delete", dashboard.deleteTable);
     router.post("/time/delete", dashboard.deleteTime);
     router.post("/book/delete", dashboard.deleteBook);
-    router.post("/book/submit", dashboard.deleteBook);
+    router.post("/book/submit", dashboard.submitBook);
     router.post("/time/reset", dashboard.resetTime);
     router.get("/book", dashboard.getBook);
     router.get("/cancellationorder", dashboard.getCancellationOrder);
