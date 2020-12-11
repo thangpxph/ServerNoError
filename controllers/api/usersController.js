@@ -4,6 +4,7 @@ const Table = require("../../model/Table");
 const Time = require("../../model/Time");
 const Dish = require("../../model/Dish");
 const Book = require("../../model/Book");
+const Notification = require("../../model/Notification");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -189,6 +190,17 @@ const getAllBookById = async (req, res) => {
     } catch (error) {
         return res.status(200).json({status: false, msg: "1"});
     }
+};
+const getNotification = async (req, res) => {
+    try {
+        let lishData = await Notification.find().select("-__v");
+        if (lishData) {
+            return res.send(lishData);
+        } else
+            return res.status(200).json({status: false, msg: "1"});
+    } catch (error) {
+        return res.status(200).json({status: false, msg: "1"});
+    }
 }
 module.exports = {
     loginUser,
@@ -203,4 +215,5 @@ module.exports = {
     getDishByCategory,
     getBookById,
     getAllBookById,
+    getNotification,
 };

@@ -3,7 +3,8 @@ const Category = require('../model/Category');
 const Dish = require('../model/Dish');
 const Table = require('../model/Table');
 const Time = require('../model/Time');
-const Book = require('../model/Book')
+const Book = require('../model/Book');
+const Notification = require('../model/Notification');
 require('dotenv').config();
 const cloudinary = require("../config/cloudinary");
 
@@ -169,9 +170,23 @@ const getTime = async (req, res) => {
         noNum: index + 1,
     }));
     res.render("time", {
-        title: "Quản khung giờ",
+        title: "Quản lý khung giờ",
         layout: "dashlayout",
         timeList: newData,
+    })
+};
+const getNotification = async (req, res) => {
+    let notifications = await Notification.find()
+        .select("-__v")
+        .lean();
+    let newData = notifications.map((item, index) => ({
+        ...item,
+        noNum: index + 1,
+    }));
+    res.render("notification", {
+        title: "Quản lý thông báo",
+        layout: "dashlayout",
+        notificationLish:newData,
     })
 };
 const createTime = async (req, res) => {
@@ -190,6 +205,25 @@ const createTime = async (req, res) => {
             let createData = await Time.create({startingTime, endTime, slot})
         }
         res.redirect("/admin/time");
+    } catch (error) {
+        console.log(error.message)
+    }
+};
+const createNotification = async (req, res) => {
+    const {notificationId, title, content} = req.body;
+    try {
+        if (notificationId !== "") {
+            let updateData = await Notification.findByIdAndUpdate(
+                notificationId, {
+                    title,
+                    content,
+                },
+                {new: true}
+            );
+        } else {
+            let createData = await Notification.create({title, content})
+        }
+        res.redirect("/admin/notification");
     } catch (error) {
         console.log(error.message)
     }
@@ -248,6 +282,11 @@ const deleteCategory = async (req, res) => {
     let dishs = await Dish.deleteMany({category: categoryIdDel});
     let category = await Category.findByIdAndDelete(categoryIdDel);
     res.redirect("/admin/category");
+}
+const deleteNotification = async (req, res) => {
+    const {notificationIdDel} = req.body;
+    let notification = await Notification.findByIdAndDelete(notificationIdDel);
+    res.redirect("/admin/notification");
 }
 const deleteTable = async (req, res) => {
     const {tableIdDel} = req.body;
@@ -326,4 +365,7 @@ module.exports = {
     getDishByCategoryWeb,
     deleteBook,
     submitBook,
+    getNotification,
+    createNotification,
+    deleteNotification,
 };
