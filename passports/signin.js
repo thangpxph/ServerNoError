@@ -13,7 +13,7 @@ const signIn = (passport) => {
       },
       (req, phone, password, done) => {
         // Tìm dữ liệu theo phone trong mongo
-        User.findOne({ phone: phone }, (err, user) => {
+        User.findOne({ phone: phone, permission: 2}, (err, user) => {
           // Nếu có lỗi thì bỏ qua không đăng nhập
           if (err) return done(err);
           // Nếu người dùng không tồn tại thì bỏ qua không đăng nhập và trả về thông tin

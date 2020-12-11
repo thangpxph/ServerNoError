@@ -88,6 +88,7 @@ const createDish = async (req, res) => {
 
     try {
         if (dishId != "") {
+            const result = await cloudinary.uploader.upload(image.path);
             let updateData = await Dish.findByIdAndUpdate(
                 dishId, {
                     nameDish,
@@ -96,7 +97,7 @@ const createDish = async (req, res) => {
                     calories,
                     weight,
                     ingredient,
-                    imageDish,
+                    imageDish: result.secure_url,
                     category
                 },
                 {new: true}

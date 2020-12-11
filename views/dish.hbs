@@ -115,7 +115,6 @@
                         </div>
                         <div class="btn btn-secondary-success btn-rounded waves-effect btn-sm float-left w-full text-left">
                             <label for="image">Hình ảnh minh họa</label>
-                            <span>Choose file</span>
                             <input type="file" name="image">
                         </div>
                     </div>
@@ -174,7 +173,7 @@
                 let category = e.target.dataset.categoryid;
                 let pr = e.target.parentNode.parentNode;
                 let nameDish = pr.getElementsByTagName('td')[2].innerText;
-                let price = pr.getElementsByTagName('td')[4].innerText;
+                let price = pr.getElementsByTagName('td')[5].innerText;
                 let time = pr.getElementsByTagName('td')[5].innerText;
                 let calories = pr.getElementsByTagName('td')[6].innerText;
                 let weight = pr.getElementsByTagName('td')[7].innerText;
