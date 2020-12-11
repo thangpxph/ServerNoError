@@ -178,6 +178,18 @@ const getBookById = async (req, res) => {
         return res.status(200).json({status: false, msg: "1"});
     }
 }
+const getAllBookById = async (req, res) => {
+    const {id} = req.body;
+    try {
+        let books = await Book.find({user: id}).lean();
+        if (books) {
+            return res.send(books);
+        } else
+            return res.status(200).json({status: false, msg: "1"});
+    } catch (error) {
+        return res.status(200).json({status: false, msg: "1"});
+    }
+}
 module.exports = {
     loginUser,
     signinUser,
@@ -190,4 +202,5 @@ module.exports = {
     bookDish,
     getDishByCategory,
     getBookById,
+    getAllBookById,
 };
