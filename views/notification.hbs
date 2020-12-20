@@ -6,7 +6,7 @@
             <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                 Thêm thông báo
             </button>
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-bordered" id="tbnotification">
                 <thead>
                 <tr>
                     <th style="width: 10%">#</th>
@@ -54,14 +54,14 @@
                         <div class="form-group">
                             <label for="title">Tiêu đề</label>
                             <input type="text" class="form-control" name="title" id="title"
-                                   placeholder="Tiêu đề">
+                                   placeholder="Tiêu đề" required>
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="content">Nội dung</label>
                             <input type="text" class="form-control" name="content" id="content"
-                                   placeholder="Nội dung">
+                                   placeholder="Nội dung" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -132,4 +132,5 @@
         })
     }
     delEvent();
+    $('#tbnotification').DataTable();
 </script>

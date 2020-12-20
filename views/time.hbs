@@ -9,7 +9,8 @@
             <button style="right: 50px; position: absolute" type="button" id="resetBtn" class="btn btn-primary"data-toggle="modal" data-target="#resetId">
                 Reset slot
             </button>
-            <table class="table table-striped table-hover">
+            <hr/>
+            <table class="table table-striped table-hover table-bordered" id="tbtime">
                 <thead>
                 <tr>
                     <th style="width: 10%">#</th>
@@ -61,16 +62,16 @@
                             <div class="form-group col-4">
                                 <label for="startingTime">Thời gian bắt đầu</label>
                                 <input type="time" class="form-control" name="startingTime" id="startingTime"
-                                       placeholder="Thời gian bắt đầu">
+                                       placeholder="Thời gian bắt đầu" required>
                             </div>
                             <div class="form-group col-4">
                                 <label for="endTime">Thời gian kết thúc</label>
                                 <input type="time" class="form-control" name="endTime" id="endTime"
-                                       placeholder="Thời gian kết thúc">
+                                       placeholder="Thời gian kết thúc" required>
                             </div>
                             <div class="form-group col-4">
                                 <label for="slot">Slot</label>
-                                <input type="number" class="form-control" name="slot" id="slot">
+                                <input type="number" class="form-control" name="slot" id="slot" required>
                             </div>
                         </div>
                     </div>
@@ -117,7 +118,7 @@
                     </div>
                     <div class="modal-body">
                         <h6>Bạn muốn reset lại slot</h6>
-                        <input type="number" name="resetTime" id="reset">
+                        <input type="number" name="resetTime" id="reset" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
@@ -183,4 +184,5 @@
     }
 
     resetEvent();
+    $('#tbtime').DataTable();
 </script>

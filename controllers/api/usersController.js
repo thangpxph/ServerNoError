@@ -144,12 +144,13 @@ const getDishByCategory = async (req, res) => {
 }
 
 const bookDish = async (req, res) => {
-    const {iduser, people, time, listdist, money, status} = req.body;
+    const {iduser, people , child, time, listdist, money, status} = req.body;
 
     let obj = JSON.parse(listdist)
     let bookDish = new Book();
     bookDish.user = iduser;
     bookDish.people = people;
+    bookDish.child = child;
     bookDish.time = time;
     bookDish.dish = obj;
     bookDish.money = money;

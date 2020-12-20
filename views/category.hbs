@@ -6,7 +6,8 @@
             <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                 Thêm thể loại
             </button>
-            <table class="table table-striped table-hover">
+            <hr/>
+            <table class="table table-striped table-hover table-bordered" id="tbcategory">
                 <thead>
                 <tr>
                     <th style="width: 10%">#</th>
@@ -52,7 +53,7 @@
                         <div class="form-group">
                             <label for="title">Tên thể loại</label>
                             <input type="text" class="form-control" name="title" id="title"
-                                   placeholder="Tên thể loại">
+                                   placeholder="Tên thể loại" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -120,4 +121,5 @@
         })
     }
     delEvent();
+    $('#tbcategory').DataTable();
 </script>
