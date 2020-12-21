@@ -30,6 +30,7 @@ const AdminRoutes = (passport) => {
     router.get("/completedorders", dashboard.getCompletedOrders);
     router.get("/dishByCategoryWeb/:id", dashboard.getDishByCategoryWeb);
     router.get("/bookByIdWeb/:id", dashboard.getBookByIdWeb);
+    router.get("/bookByIdUser/:id", dashboard.getBookByIdUser);
     return router;
 };
 module.exports = AdminRoutes;

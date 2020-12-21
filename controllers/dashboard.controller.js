@@ -211,6 +211,10 @@ const createTime = async (req, res) => {
     }
 };
 const createNotification = async (req, res) => {
+    const datetime = new Date();
+
+    const date = datetime.toISOString().slice(0,10);
+    console.log(date)
     const {notificationId, title, content} = req.body;
     try {
         if (notificationId !== "") {
@@ -218,11 +222,12 @@ const createNotification = async (req, res) => {
                 notificationId, {
                     title,
                     content,
+                    date: date,
                 },
                 {new: true}
             );
         } else {
-            let createData = await Notification.create({title, content})
+            let createData = await Notification.create({title, content, date: date})
         }
         res.redirect("/admin/notification");
     } catch (error) {
@@ -311,14 +316,14 @@ const submitBook = async (req, res) => {
     const {bookIdSubmit} = req.body;
     let books = await Book.findByIdAndUpdate(bookIdSubmit,
         {
-            status: 2,
+            status: 2 ,
         })
     res.redirect("/admin/completedorders");
 }
 const getBookByIdWeb = async (req, res) => {
     try {
         let books = await Book.findOne({_id: req.params.id}).select("dish -_id").lean();
-        console.log(books.dish)
+        console.log(req.params.id)
         let newData = books.dish.map((item, index) => ({
             ...item,
             noNum: index + 1,
@@ -332,6 +337,22 @@ const getBookByIdWeb = async (req, res) => {
         return res.status(200).json({status: false, msg: "1"});
     }
 }
+const getBookByIdUser = async (req, res) => {
+
+    let books = await Book.find({user: req.params.id})
+        .populate({path: "user", select: "fullname phone"})
+        .lean();
+    let newData = books.map((item, index) => ({
+        ...item,
+        noNum: index + 1,
+    }));
+    res.render("bookbyuser", {
+        title: "Quản lý đơn đặt bàn",
+        layout: "dashlayout",
+        bookList: newData,
+    })
+}
+
 const getDishByCategoryWeb = async (req, res) => {
     try {
         let dishs = await Dish.find({category: req.params.id})
@@ -369,4 +390,5 @@ module.exports = {
     getNotification,
     createNotification,
     deleteNotification,
+    getBookByIdUser,
 };

@@ -9,11 +9,12 @@
             <table class="table table-striped table-hover table-bordered" id="tbnotification">
                 <thead>
                 <tr>
-                    <th style="width: 10%">#</th>
-                    <th style="width: 20%">Tiêu đề</th>
+                    <th style="width: 5%">#</th>
+                    <th style="width: 15%">Tiêu đề</th>
                     <th style="width: 40%">Nội dung</th>
-                    <th style="width: 15%">Hành động</th>
-                    <th style="width: 15%">Hành động</th>
+                    <th style="width: 14%">Ngày đăng</th>
+                    <th style="width: 13%">Hành động</th>
+                    <th style="width: 13%">Hành động</th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
@@ -22,6 +23,7 @@
                         <td>{{noNum}}</td>
                         <td><h6>{{title}}</h6></td>
                         <td>{{content}}</td>
+                        <td>{{date}}</td>
                         <td>
                             <button type="button" name="editBtn" class="editBtn btn btn-primary" data-id={{_id}}
                                     class="btn btn-primary">Sửa

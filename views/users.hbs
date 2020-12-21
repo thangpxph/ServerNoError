@@ -8,6 +8,7 @@
                         <th>#</th>
                         <th>Tên người dùng</th>
                         <th>Phone</th>
+                        <th>Đơn hàng đã đặt</th>
                     </tr>
                 </thead>
                 <tbody id="userbd">
@@ -16,6 +17,12 @@
                         <td>{{noNum}}</td>
                         <td>{{fullname}}</td>
                         <td>{{phone}}</td>
+                        <td>
+                            <a href="/admin/bookByIdUser/{{_id}}" type="button" name="showBtn" class="showBtn btn btn-primary"
+                               data-id={{_id}}
+                               class="btn btn-primary">Chi tiết
+                            </a>
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>
