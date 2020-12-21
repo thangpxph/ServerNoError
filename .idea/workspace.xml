@@ -19,14 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d7a57cc-6894-4406-a3da-b5b58eb648a8" name="Default Changelist" comment="api notification">
-      <change afterPath="$PROJECT_DIR$/views/bookbyuser.hbs" afterDir="false" />
+    <list default="true" id="9d7a57cc-6894-4406-a3da-b5b58eb648a8" name="Default Changelist" comment="bookuser">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/dashboard.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Notification.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/dashboard.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/dashboard.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notification.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/notification.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/users.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/users.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/book.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/book.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +125,7 @@
       <workItem from="1608441060813" duration="7098000" />
       <workItem from="1608470210873" duration="5572000" />
       <workItem from="1608518303172" duration="2725000" />
+      <workItem from="1608525837269" duration="1509000" />
     </task>
     <task id="LOCAL-00001" summary="signup">
       <created>1605634816350</created>
@@ -425,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608482891708</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="bookuser">
+      <created>1608525865572</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1608525865572</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +467,8 @@
     <MESSAGE value="update dish" />
     <MESSAGE value="book" />
     <MESSAGE value="api notification" />
-    <option name="LAST_COMMIT_MESSAGE" value="api notification" />
+    <MESSAGE value="bookuser" />
+    <option name="LAST_COMMIT_MESSAGE" value="bookuser" />
   </component>
   <component name="WindowStateProjectService">
     <state x="457" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607321536794">
@@ -487,22 +491,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="447" y="67" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1605634031824" />
-    <state width="1345" height="165" key="GridCell.Tab.0.bottom" timestamp="1608523205395">
+    <state width="1345" height="165" key="GridCell.Tab.0.bottom" timestamp="1608526180242">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="165" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1608523205395" />
-    <state width="1345" height="165" key="GridCell.Tab.0.center" timestamp="1608523205395">
+    <state width="1345" height="165" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1608526180242" />
+    <state width="1345" height="165" key="GridCell.Tab.0.center" timestamp="1608526180242">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="165" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1608523205395" />
-    <state width="1345" height="165" key="GridCell.Tab.0.left" timestamp="1608523205394">
+    <state width="1345" height="165" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1608526180242" />
+    <state width="1345" height="165" key="GridCell.Tab.0.left" timestamp="1608526180242">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="165" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1608523205394" />
-    <state width="1345" height="165" key="GridCell.Tab.0.right" timestamp="1608523205395">
+    <state width="1345" height="165" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1608526180242" />
+    <state width="1345" height="165" key="GridCell.Tab.0.right" timestamp="1608526180242">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="165" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1608523205395" />
+    <state width="1345" height="165" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1608526180242" />
     <state width="1345" height="227" key="GridCell.Tab.1.bottom" timestamp="1607630079338">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -555,10 +559,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1605669644121" />
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1608482895684">
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1608525869077">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1608482895684" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1608525869077" />
     <state x="500" y="283" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606191651806">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
